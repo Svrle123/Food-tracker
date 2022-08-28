@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 import foodRoutes from './routes/foodRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 const app = express();
 dotenv.config();
@@ -14,6 +15,7 @@ app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/foods', foodRoutes);
+app.use('/users', userRoutes);
 
 app.get('/', (_, res) => {
     res.send("Food tracker API");
