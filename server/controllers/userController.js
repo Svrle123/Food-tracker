@@ -28,7 +28,7 @@ export const signIn = async (req, res) => {
         }
 
         if (isValidUser.password === password) {
-            res.status(200).json({ ...isValidUser, password: null });
+            res.status(200).json({ ...isValidUser, password: "" });
         } else {
             res.status(400).json({ message: "Password is incorrect!" });
         }
