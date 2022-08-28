@@ -4,7 +4,7 @@ const foodLogSchema = mongoose.Schema(
     {
         timeStamp: Date,
         userId: String,
-        foodEntrys: [ String ]
+        foodEntries: [String]
     }
 );
 

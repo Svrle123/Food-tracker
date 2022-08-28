@@ -3,11 +3,14 @@ import mongoose from "mongoose";
 const foodSchema = mongoose.Schema(
     {
         name: String,
+        type: String,
         calories: Number,
-        fat: Number,
         carbohydrates: Number,
+        fat: Number,
         protein: Number,
-        fiber: Number
+        fiber: Number,
+        creator: String,
+        createdAt: Date,
     }
 );
 
