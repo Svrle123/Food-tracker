@@ -1,6 +1,7 @@
-import mongoose from "mongoose";
+import { Schema, model } from "mongoose";
+import { IFood } from "./interfaces/IFood";
 
-const foodSchema = mongoose.Schema(
+const foodSchema = new Schema<IFood>(
     {
         name: String,
         type: String,
@@ -10,8 +11,8 @@ const foodSchema = mongoose.Schema(
         protein: Number,
         fiber: Number,
         creator: String,
-        createdAt: Date,
+        createdAt: String,
     }
 );
 
-export default mongoose.model('Food', foodSchema);
+export default model<IFood>('Food', foodSchema);
