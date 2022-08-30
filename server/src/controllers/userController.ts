@@ -7,6 +7,12 @@ import { ISignInBody } from "./interfaces/ISignInBody";
 export const signUp = async (req: Request, res: Response) => {
     const userDetails: IUser = req.body;
 
+    const emailTaken: IUser | null = await User.findOne<IUser>({ email: userDetails.email }).lean();
+
+    if (emailTaken) {
+        return res.status(400).json({ message: "User with that email already exists!" })
+    }
+
     try {
         const newUser: HydratedDocument<IUser> = new User<IUser>({ ...userDetails });
         await newUser.save();

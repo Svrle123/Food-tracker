@@ -1,11 +1,7 @@
 import React from 'react'
+import { IButtonProps } from './interfaces/IButtonProps'
 
-interface ButtonProps {
-    onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
-    label: string
-}
-
-const Button: React.FC<ButtonProps> = ({ onClick, label }) => {
+const Button: React.FC<IButtonProps> = ({ onClick, label }) => {
     return (
         <button onClick={onClick}>{label}</button>
     )

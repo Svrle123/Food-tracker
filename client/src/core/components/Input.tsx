@@ -1,16 +1,7 @@
 import React from 'react'
+import { IInputProps } from './interfaces/IInputProps'
 
-interface InputProps {
-    className: string,
-    placeholder: string;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-    value: string | number,
-    label: string,
-    type: string,
-    id: string,
-}
-
-const Input: React.FC<InputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
+const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
     return (
         <div className={className}>
             <label htmlFor={id}>{label}</label>

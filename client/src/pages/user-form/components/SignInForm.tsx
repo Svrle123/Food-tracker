@@ -1,22 +1,22 @@
-import { FC, useState, useContext } from 'react'
+import React, { FC, useState, useContext } from 'react'
 import { Button, Input } from '../../../core/components';
-import { useAppDispatch } from '../../../redux/hooks';
+import { useAppDispatch } from '../../../store/hooks';
 import { logIn } from '../../../features/user/userSlice';
 
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
+import { ISignInData } from '../interfaces/ISignInData';
 
-export type SignInData = {
-    userNameOrEmail: string,
-    password: string
+type FormProps = {
+    changeForm: (event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-const initialState: SignInData = {
-    userNameOrEmail: "",
-    password: "",
+const initialState: ISignInData = {
+    userNameOrEmail: '',
+    password: '',
 }
 
-const SignInForm: FC = () => {
-    const [userData, setUserData] = useState<SignInData>(initialState);
+const SignInForm: FC<FormProps> = ({ changeForm }) => {
+    const [userData, setUserData] = useState<ISignInData>(initialState);
     const dispatch = useAppDispatch();
 
     const { userRouteService } = useContext(ServiceContext);
@@ -25,7 +25,7 @@ const SignInForm: FC = () => {
         setUserData({ ...userData, [event.currentTarget.id]: event.currentTarget.value });
     }
 
-    const handleSubmit = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         try {
             const response = await userRouteService.signIn(userData);
@@ -37,26 +37,27 @@ const SignInForm: FC = () => {
     }
 
     return (
-        <form>
+        <form onSubmit={(e) => handleSubmit(e)}>
             <Input
-                className=""
-                placeholder="Username / Email"
+                className=''
+                placeholder='Username / Email'
                 label='Enter your username or email:'
                 onChange={handleInputChange}
-                type="text"
+                type='text'
                 value={userData.userNameOrEmail}
-                id="userNameOrEmail"
+                id='userNameOrEmail'
             />
             <Input
-                className=""
-                placeholder="Password"
+                className=''
+                placeholder='Password'
                 onChange={handleInputChange}
-                type="password"
+                type='password'
                 value={userData.password}
                 label='Enter your password:'
-                id="password"
+                id='password'
             />
-            <Button onClick={handleSubmit} label={"Sign in"} />
+            <button type='submit'>Log in</button>
+            <Button onClick={(e) => changeForm(e)} label='Switch to Register' />
         </form>
     )
 }

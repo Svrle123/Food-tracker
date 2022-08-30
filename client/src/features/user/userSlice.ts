@@ -3,11 +3,11 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import { IUser } from '../../core/interfaces/IUser';
 
 const initialState: IUser = {
-    userName: "",
-    password: "",
+    userName: '',
+    password: '',
     isAdmin: false,
-    email: "",
-    name: "",
+    email: '',
+    name: '',
 }
 
 export const userSlice = createSlice({
