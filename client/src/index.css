@@ -6,6 +6,10 @@
   font-family: sans-serif;
 }
 
+body {
+  background-color: #545F66;
+}
+
 /*Start of user form*/
 .user__form__container {
   position: fixed;
@@ -74,10 +78,19 @@
 
 .nav__logo {
   margin-right: auto;
+  text-align: center;
+}
+
+.app__version {
+  padding: 0px;
+  margin: 0px;
+  font-size: 10px;
+  font-weight: bolder;
+
 }
 
 .nav__options {
-  text-align: center;
+  justify-content: center;
 }
 
 .navbar li {

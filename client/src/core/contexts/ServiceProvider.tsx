@@ -1,8 +1,10 @@
 import { FC, ReactNode, createContext } from "react";
-import { userRouteService, RouteService } from "../services/UserRouteService";
+import { userRouteService, IUserRouteService } from "../services/UserRouteService";
+import { foodRouteService, IFoodRouteService } from '../services/FoodRouteService';
 
 interface IServices {
-    userRouteService: RouteService
+    userRouteService: IUserRouteService
+    foodRouteService: IFoodRouteService
 }
 
 type ServiceProviderProps = {
@@ -11,6 +13,7 @@ type ServiceProviderProps = {
 
 const services: IServices = {
     userRouteService: userRouteService,
+    foodRouteService: foodRouteService,
 }
 
 export const ServiceContext = createContext<IServices>(services)

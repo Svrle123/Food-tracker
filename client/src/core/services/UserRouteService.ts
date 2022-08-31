@@ -19,4 +19,4 @@ class UserRouteService extends Api {
 }
 
 export const userRouteService = new UserRouteService();
-export type RouteService = typeof userRouteService;
+export type IUserRouteService = typeof userRouteService;

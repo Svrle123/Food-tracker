@@ -1,4 +1,6 @@
 import axios, { AxiosResponse } from "axios";
+import uritemplate from 'uritemplate';
+import { IQueryParams } from "../interfaces/IQueryParams";
 
 export class Api {
     baseUrl: string = "http://localhost:4000" //while in development
@@ -6,13 +8,14 @@ export class Api {
         this.baseUrl += endpoint;
     }
 
-    get = async <T>(): Promise<T> => {
-        const response = await axios.get(this.baseUrl)
+    get = async (params: IQueryParams): Promise<AxiosResponse> => {
+        const response = await axios.get(uritemplate.parse(this.baseUrl + `/{?searchQuery,type,page,rpp}`).expand(params));
         return response.data;
     }
 
-    post = async <T>(payload: T): Promise<T> => {
+    post = async <T>(payload: T): Promise<AxiosResponse> => {
         const response: AxiosResponse = await axios.post(this.baseUrl, payload);
         return response.data;
     }
 }
+
