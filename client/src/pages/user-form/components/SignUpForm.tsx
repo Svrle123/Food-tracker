@@ -2,10 +2,7 @@ import React, { FC, useState, useContext } from 'react'
 import { Button, Input } from '../../../core/components'
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
 import { ISignUpData } from '../interfaces/ISignUpData';
-
-type FormProps = {
-  changeForm: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { IFormProps } from '../interfaces/IFormProps';
 
 const initialState: ISignUpData = {
   userName: '',
@@ -16,7 +13,7 @@ const initialState: ISignUpData = {
   confirmPassword: ''
 }
 
-const SignUpForm: FC<FormProps> = ({ changeForm }) => {
+const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
   const [formValues, setFormValues] = useState<ISignUpData>(initialState)
   const { userRouteService } = useContext(ServiceContext)
 

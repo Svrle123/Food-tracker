@@ -5,17 +5,14 @@ import { logIn } from '../../../features/user/userSlice';
 
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
 import { ISignInData } from '../interfaces/ISignInData';
-
-type FormProps = {
-    changeForm: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { IFormProps } from '../interfaces/IFormProps';
 
 const initialState: ISignInData = {
     userNameOrEmail: '',
     password: '',
 }
 
-const SignInForm: FC<FormProps> = ({ changeForm }) => {
+const SignInForm: FC<IFormProps> = ({ changeForm }) => {
     const [userData, setUserData] = useState<ISignInData>(initialState);
     const { userRouteService } = useContext(ServiceContext);
     const dispatch = useAppDispatch();

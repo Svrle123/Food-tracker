@@ -1,6 +1,5 @@
 import React, { FC, useState } from 'react'
-import SignInForm from './components/SignInForm';
-import SignUpForm from './components/SignUpForm';
+import { SignInForm, SignUpForm } from './';
 
 const RegisterLogin: FC = () => {
     const [isLogIn, setIsLogIn] = useState<boolean>(true);
