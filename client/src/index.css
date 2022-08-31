@@ -6,7 +6,8 @@
   font-family: sans-serif;
 }
 
-.form__container {
+/*Start of user form*/
+.user__form__container {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -52,17 +53,15 @@
   box-shadow: 1px 4px 10px 1px #aaa;
 
   background: #207cca;
-  /* Old browsers */
   background: -moz-linear-gradient(left, #207cca 0%, #9f58a3 100%);
-  /* FF3.6-15 */
   background: -webkit-linear-gradient(left, #207cca 0%, #9f58a3 100%);
-  /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to right, #207cca 0%, #9f58a3 100%);
-  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#207cca', endColorstr='#9f58a3', GradientType=1);
-  /* IE6-9 */
 }
 
+/*End of user form*/
+
+/*Start of navbar*/
 
 .navbar {
   display: flex;
@@ -103,3 +102,99 @@
 .nav__button:hover {
   color: #B1CC74;
 }
+
+/*End of navbar*/
+
+/*Start of notification*/
+
+.notification__wrap {
+  min-width: 250px;
+  margin-left: -125px;
+  text-align: left;
+  border-radius: 5px;
+  padding: 5px;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  bottom: 0;
+  color: #eee;
+  -webkit-animation: fadein 0.5s, fadeout 0.6s 2.5s;
+  animation: fadein 0.5s, fadeout 0.6s 2.5s;
+}
+
+.notification__Error {
+  background-color: #CA3433;
+}
+
+.notification__Warning {
+  background-color: #e0a800;
+}
+
+.notification__item {
+  display: block;
+  padding: 5px 5px;
+}
+
+.notification__type {
+  text-transform: uppercase;
+  font-size: 15px;
+}
+
+.notification__message {
+  font-size: 12px;
+}
+
+.notification__timeStamp {
+  text-align: right;
+  font-size: 10px;
+}
+
+@-webkit-keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+
+  to {
+    right: 15px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    right: 0;
+    opacity: 0;
+  }
+
+  to {
+    right: 15px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    right: 15px;
+    opacity: 1;
+  }
+
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    right: 15px;
+    opacity: 1;
+  }
+
+  to {
+    right: 0;
+    opacity: 0;
+  }
+}
+
+/*End of notification*/

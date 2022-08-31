@@ -1,5 +1,4 @@
 import React, { FC, useState } from 'react'
-import Navbar from '../../core/components/Navbar';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 
@@ -12,7 +11,7 @@ const RegisterLogin: FC = () => {
     }
 
     return (
-        <div className='form__container'>
+        <div className='user__form__container'>
             <div className='user__form'>
                 {isLogIn ?
                     <SignInForm changeForm={handleFormChange} />
