@@ -32,8 +32,14 @@ export const getFood = async (req: Request, res: Response) => {
     const count: number = await Food.countDocuments();
 
     res.status(200).json({
-        food,
+        data: food,
         currentPage: page,
         totalPages: Math.ceil(count / rpp),
     });
+}
+
+export const getAllTypes = async (req: Request, res: Response) => {
+    const allFoodTypes: string[] = await Food.distinct("type");
+
+    res.status(200).json(allFoodTypes);
 }
