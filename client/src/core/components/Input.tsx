@@ -3,16 +3,17 @@ import { IInputProps } from './interfaces/IInputProps'
 
 const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
     return (
-        <div className={className}>
+        <React.Fragment>
             <label htmlFor={id}>{label}</label>
             <input
+                className={className}
                 placeholder={placeholder}
                 onChange={onChange}
                 value={value}
                 type={type}
                 id={id}
             />
-        </div>
+        </React.Fragment>
     )
 }
 

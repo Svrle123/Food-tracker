@@ -1,13 +1,105 @@
-body {
+/*https: //coolors.co/545f66-829399-d0f4ea-e8fcc2-b1cc74 link to palette*/
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  font-family: sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.form__container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.user__form {
+  width: 280px;
+  background-color: #fcfcfc;
+  padding: 20px 50px 40px;
+  box-shadow: 1px 4px 10px 1px #aaa;
+  font-family: sans-serif;
+}
+
+.user__form * {
+  box-sizing: border-box;
+}
+
+.user__form__input {
+  margin-bottom: 15px;
+  display: block;
+  height: 32px;
+  padding: 6px 16px;
+  width: 100%;
+  border: none;
+  background-color: #f3f3f3;
+}
+
+.user__form label {
+  color: #777;
+  font-size: 0.8em;
+}
+
+.user__form__button {
+  display: block;
+  margin: 20px auto 0;
+  width: 150px;
+  height: 40px;
+  border-radius: 25px;
+  border: none;
+  color: #eee;
+  font-weight: 700;
+  box-shadow: 1px 4px 10px 1px #aaa;
+
+  background: #207cca;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #207cca 0%, #9f58a3 100%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #207cca 0%, #9f58a3 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to right, #207cca 0%, #9f58a3 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#207cca', endColorstr='#9f58a3', GradientType=1);
+  /* IE6-9 */
+}
+
+
+.navbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: right;
+  padding: 10px 30px;
+  background-color: #829399;
+  box-shadow: 0 1px 8px #545F66;
+}
+
+.nav__logo {
+  margin-right: auto;
+}
+
+.nav__options {
+  text-align: center;
+}
+
+.navbar li {
+  list-style: none;
+  display: inline-block;
+  padding: 15px 30px;
+}
+
+.nav__button {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  text-decoration: none;
+  color: #555;
+  transition: all 0.3s ease 0s;
+}
+
+.nav__button:hover {
+  color: #B1CC74;
 }

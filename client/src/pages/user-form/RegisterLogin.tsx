@@ -1,4 +1,5 @@
 import React, { FC, useState } from 'react'
+import Navbar from '../../core/components/Navbar';
 import SignInForm from './components/SignInForm';
 import SignUpForm from './components/SignUpForm';
 
@@ -11,13 +12,15 @@ const RegisterLogin: FC = () => {
     }
 
     return (
-        <React.Fragment>
-            {isLogIn ?
-                <SignInForm changeForm={handleFormChange} />
-                :
-                <SignUpForm changeForm={handleFormChange} />
-            }
-        </React.Fragment>
+        <div className='form__container'>
+            <div className='user__form'>
+                {isLogIn ?
+                    <SignInForm changeForm={handleFormChange} />
+                    :
+                    <SignUpForm changeForm={handleFormChange} />
+                }
+            </div>
+        </div>
     )
 }
 
