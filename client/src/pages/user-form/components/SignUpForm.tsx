@@ -2,10 +2,7 @@ import React, { FC, useState, useContext } from 'react'
 import { Button, Input } from '../../../core/components'
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
 import { ISignUpData } from '../interfaces/ISignUpData';
-
-type FormProps = {
-  changeForm: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { IFormProps } from '../interfaces/IFormProps';
 
 const initialState: ISignUpData = {
   userName: '',
@@ -16,7 +13,7 @@ const initialState: ISignUpData = {
   confirmPassword: ''
 }
 
-const SignUpForm: FC<FormProps> = ({ changeForm }) => {
+const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
   const [formValues, setFormValues] = useState<ISignUpData>(initialState)
   const { userRouteService } = useContext(ServiceContext)
 
@@ -45,13 +42,57 @@ const SignUpForm: FC<FormProps> = ({ changeForm }) => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)}>
-      <Input className='form__input' id='name' type='text' placeholder='Enter full name' onChange={(e) => handleInputChange(e)} value={formValues.name} label='Full name' />
-      <Input className='form__input' id='userName' type='text' placeholder='Enter username' onChange={(e) => handleInputChange(e)} value={formValues.userName} label='Username' />
-      <Input className='form__input' id='email' type='email' placeholder='Enter email' onChange={(e) => handleInputChange(e)} value={formValues.email} label='Email' />
-      <Input className='form__input' id='password' type='password' placeholder='Enter password' onChange={(e) => handleInputChange(e)} value={formValues.password} label='Password' />
-      <Input className='form__input' id='confirmPassword' type='password' placeholder='Confirm password' onChange={(e) => handleInputChange(e)} value={formValues.confirmPassword} label='Confirm password' />
-      <button type='submit'>Register</button>
-      <Button onClick={(e) => changeForm(e)} label='Switch to Log in' />
+      <Input
+        className='user__form__input'
+        placeholder='Enter full name'
+        onChange={(e) => handleInputChange(e)}
+        value={formValues.name}
+        label='Full name'
+        type='text'
+        id='name'
+      />
+      <Input
+        className='user__form__input'
+        placeholder='Enter username'
+        onChange={(e) => handleInputChange(e)}
+        value={formValues.userName}
+        label='Username'
+        type='text'
+        id='userName'
+      />
+      <Input
+        className='user__form__input'
+        placeholder='Enter email'
+        onChange={(e) => handleInputChange(e)}
+        value={formValues.email}
+        label='Email'
+        type='email'
+        id='email'
+      />
+      <Input
+        className='user__form__input'
+        placeholder='Enter password'
+        onChange={(e) => handleInputChange(e)}
+        value={formValues.password}
+        type='password'
+        label='Password'
+        id='password'
+      />
+      <Input
+        className='user__form__input'
+        placeholder='Confirm password'
+        onChange={(e) => handleInputChange(e)}
+        value={formValues.confirmPassword}
+        label='Confirm password'
+        type='password'
+        id='confirmPassword'
+      />
+      <button className='user__form__button' type='submit'>Register</button>
+      <Button
+        className='user__form__button'
+        onClick={(e) => changeForm(e)}
+        label='Switch to Log in'
+      />
     </form>
   )
 }

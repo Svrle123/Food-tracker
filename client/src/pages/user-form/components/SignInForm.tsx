@@ -5,21 +5,17 @@ import { logIn } from '../../../features/user/userSlice';
 
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
 import { ISignInData } from '../interfaces/ISignInData';
-
-type FormProps = {
-    changeForm: (event: React.MouseEvent<HTMLButtonElement>) => void
-}
+import { IFormProps } from '../interfaces/IFormProps';
 
 const initialState: ISignInData = {
     userNameOrEmail: '',
     password: '',
 }
 
-const SignInForm: FC<FormProps> = ({ changeForm }) => {
+const SignInForm: FC<IFormProps> = ({ changeForm }) => {
     const [userData, setUserData] = useState<ISignInData>(initialState);
-    const dispatch = useAppDispatch();
-
     const { userRouteService } = useContext(ServiceContext);
+    const dispatch = useAppDispatch();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
         setUserData({ ...userData, [event.currentTarget.id]: event.currentTarget.value });
@@ -39,25 +35,28 @@ const SignInForm: FC<FormProps> = ({ changeForm }) => {
     return (
         <form onSubmit={(e) => handleSubmit(e)}>
             <Input
-                className=''
+                className='user__form__input'
                 placeholder='Username / Email'
-                label='Enter your username or email:'
                 onChange={handleInputChange}
-                type='text'
                 value={userData.userNameOrEmail}
+                label='Enter your username or email:'
+                type='text'
                 id='userNameOrEmail'
             />
             <Input
-                className=''
+                className='user__form__input'
                 placeholder='Password'
                 onChange={handleInputChange}
-                type='password'
                 value={userData.password}
                 label='Enter your password:'
+                type='password'
                 id='password'
             />
-            <button type='submit'>Log in</button>
-            <Button onClick={(e) => changeForm(e)} label='Switch to Register' />
+            <button className='user__form__button' type='submit'>Log in</button>
+            <Button
+                className='user__form__button'
+                onClick={(e) => changeForm(e)}
+                label='Switch to Register' />
         </form>
     )
 }
