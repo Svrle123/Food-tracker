@@ -1,5 +1,5 @@
 import React, { FC, useEffect, useState } from 'react'
-import { INotificationProps } from './interfaces/INotificationProps'
+import { INotificationProps } from '../interfaces'
 
 const Notification: FC<INotificationProps> = ({ type, message, timeStamp }) => {
     const [isVisible, setIsVisible] = useState<boolean>(true);

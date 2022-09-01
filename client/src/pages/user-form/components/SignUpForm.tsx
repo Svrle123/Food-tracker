@@ -1,8 +1,7 @@
 import React, { FC, useState, useContext } from 'react'
 import { Button, Input } from '../../../core/components'
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
-import { ISignUpData } from '../interfaces/ISignUpData';
-import { IFormProps } from '../interfaces/IFormProps';
+import { ISignUpData, IFormProps } from '../../../core/interfaces';
 
 const initialState: ISignUpData = {
   userName: '',

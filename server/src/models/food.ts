@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { IFood } from "./interfaces/IFood";
+import { IFood } from "../interfaces";
 
 const foodSchema = new Schema<IFood>(
     {

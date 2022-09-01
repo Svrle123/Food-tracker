@@ -4,8 +4,7 @@ import { useAppDispatch } from '../../../store/hooks';
 import { logIn } from '../../../features/user/userSlice';
 
 import { ServiceContext } from '../../../core/contexts/ServiceProvider';
-import { ISignInData } from '../interfaces/ISignInData';
-import { IFormProps } from '../interfaces/IFormProps';
+import { ISignInData, IFormProps } from '../../../core/interfaces';
 
 const initialState: ISignInData = {
     userNameOrEmail: '',

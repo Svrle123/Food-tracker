@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { Api } from './Api';
-import { IUser } from '../interfaces/IUser';
-import { ISignInData } from '../../pages/user-form/interfaces/ISignInData';
+import { IUser, ISignInData } from '../interfaces';
 
 class UserRouteService extends Api {
     constructor() {

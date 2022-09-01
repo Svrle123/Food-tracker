@@ -2,12 +2,16 @@ import React, { FC, useContext, useEffect, useState, useMemo } from 'react'
 import Dropdown from './Dropdown'
 import Input from './Input'
 import { ServiceContext } from '../contexts/ServiceProvider'
+import { IFoodResponse } from '../interfaces'
+import { useAppDispatch } from '../../store/hooks'
+import { setFood } from '../../features/food/foodSlice'
 
 const TableFilter: FC = () => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [selectedType, setSelectedType] = useState<string>("");
     const [dropdownData, setDropdownData] = useState<string[]>([]);
     const { foodRouteService } = useContext(ServiceContext);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const initDropdown = async () => {
@@ -17,16 +21,24 @@ const TableFilter: FC = () => {
         initDropdown();
     }, []);
 
-    const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    useEffect(() => {
+        const fetchOnSearch = async () => {
+            const response: IFoodResponse = await foodRouteService.get({ searchQuery: searchValue.trim(), type: selectedType, page: 1, rpp: 2 });
+            dispatch(setFood(response));
+        }
+        fetchOnSearch();
+    }, [searchValue, selectedType]);
+
+    const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.currentTarget.value);
     }
 
-    const handleSelect = (event: React.MouseEvent<HTMLOptionElement>): void => {
+    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedType(event.currentTarget.value);
     }
 
     //Prevent component re-rendering on input change
-    const DropdownComponent = useMemo(() => <Dropdown options={dropdownData} onSelect={handleSelect} />, [dropdownData]);
+    const DropdownComponent = useMemo(() => <Dropdown options={dropdownData} onChange={handleSelect} />, [dropdownData]);
 
     return (
         <div>

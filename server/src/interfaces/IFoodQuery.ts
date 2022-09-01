@@ -1,4 +1,4 @@
-export interface IFoodQuery {
+export default interface IFoodQuery {
     searchQuery?: string,
     type?: string,
     rpp?: number,

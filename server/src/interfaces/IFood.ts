@@ -1,4 +1,4 @@
-export interface IFood {
+export default interface IFood {
     name: string,
     type: string,
     calories: number,
@@ -6,4 +6,6 @@ export interface IFood {
     fat: number,
     protein: number,
     fiber: number,
+    creator: string,
+    createdAt: string,
 }

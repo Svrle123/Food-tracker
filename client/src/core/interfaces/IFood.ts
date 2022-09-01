@@ -1,5 +1,4 @@
-export interface IFoodTableRow {
-    onClick: () => void,
+export default interface IFood {
     name: string,
     type: string,
     calories: number,

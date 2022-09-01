@@ -1,8 +1,7 @@
 import Food from "../models/food";
 import { Request, Response } from 'express';
 import { HydratedDocument } from 'mongoose';
-import { IFood } from '../models/interfaces/IFood';
-import { IFoodQuery } from './interfaces/IFoodQuery';
+import { IFood, IFoodQuery } from '../interfaces';
 
 export const createFood = async (req: Request, res: Response) => {
     const food: IFood = req.body;
@@ -19,26 +18,32 @@ export const createFood = async (req: Request, res: Response) => {
 }
 
 export const getFood = async (req: Request, res: Response) => {
-    const { searchQuery = "", type, rpp = 10, page = 1 }: IFoodQuery = req.query;
+    const { searchQuery = "", type = "", rpp = 10, page = 1 }: IFoodQuery = req.query;
 
     const name: RegExp = new RegExp(searchQuery, "i");
     let food: IFood[];
-
-    if (type) {
-        food = await Food.find<IFood>({ type: type, name: name }).limit(rpp).skip((page - 1) * rpp).exec();
+    let count: number = 1;
+    //refactor this for the love of all that is holy
+    if (type && searchQuery) {
+        food = await Food.find<IFood>({ type: type, name: name }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+        count = await Food.find({ type: type, name: name }).countDocuments();
+    } else if (type) {
+        food = await Food.find<IFood>({ type: type }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+    } else if (name) {
+        food = await Food.find<IFood>({ name: name }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
     } else {
-        food = await Food.find<IFood>().limit(rpp).skip((page - 1) * rpp).exec();
+        food = await Food.find<IFood>().limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+
     }
-    const count: number = await Food.countDocuments();
 
     res.status(200).json({
         data: food,
-        currentPage: page,
-        totalPages: Math.ceil(count / rpp),
+        currentPage: food.length > 0 ? Number(page) : 1,
+        totalPages: food.length > 0 ? Math.ceil(count / rpp) : 1,
     });
 }
 
-export const getAllTypes = async (req: Request, res: Response) => {
+export const getAllTypes = async (_: Request, res: Response) => {
     const allFoodTypes: string[] = await Food.distinct("type");
 
     res.status(200).json(allFoodTypes);

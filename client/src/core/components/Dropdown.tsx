@@ -1,14 +1,15 @@
-import { FC, memo } from 'react'
-import { IDropdownProps } from './interfaces/IDropdownProps';
+import { FC } from 'react'
+import { IDropdownProps } from '../interfaces';
 
-const Dropdown: FC<IDropdownProps> = memo(({ options, onSelect }) => {
+const Dropdown: FC<IDropdownProps> = ({ options, onChange }) => {
     return (
-        <select>
+        <select onChange={(e) => onChange(e)}>
+            <option></option>
             {options.map((opt) => (
-                <option key={opt} onSelect={onSelect}>{opt}</option>
+                <option key={opt}>{opt}</option>
             ))}
         </select>
     )
-})
+}
 
 export default Dropdown;

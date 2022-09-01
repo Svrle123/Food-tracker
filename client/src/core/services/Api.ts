@@ -1,6 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import uritemplate from 'uritemplate';
-import { IQueryParams } from "../interfaces/IQueryParams";
+import { IQueryParams } from "../interfaces";
 
 export class Api {
     baseUrl: string = "http://localhost:4000" //while in development
@@ -8,7 +8,7 @@ export class Api {
         this.baseUrl += endpoint;
     }
 
-    get = async (params: IQueryParams): Promise<AxiosResponse> => {
+    get = async (params: IQueryParams) => {
         const response = await axios.get(uritemplate.parse(this.baseUrl + `/{?searchQuery,type,page,rpp}`).expand(params));
         return response.data;
     }

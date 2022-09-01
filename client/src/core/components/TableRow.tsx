@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IFoodTableRow } from './interfaces/IFoodTableRow'
+import { IFoodTableRow } from '../interfaces'
 
 const TableRow: FC<IFoodTableRow> = (props) => {
     const { name, type, calories, carbohydrates, fat, protein, fiber, onClick } = props;

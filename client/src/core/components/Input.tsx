@@ -1,5 +1,5 @@
 import React from 'react'
-import { IInputProps } from './interfaces/IInputProps'
+import { IInputProps } from '../interfaces'
 
 const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
     return (
