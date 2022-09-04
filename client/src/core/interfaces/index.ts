@@ -8,6 +8,7 @@ export type { default as IFoodState } from './IFoodState';
 
 export type { default as ISignInData } from './ISignInData';
 export type { default as ISignUpData } from './ISignUpData';
+export type { default as ISignInValidation } from './ISignInValidation';
 
 export type { default as INotificationProps } from './INotificationProps';
 export type { default as IDropdownProps } from './IDropdownProps';
@@ -16,3 +17,4 @@ export type { default as IInputProps } from './IInputProps';
 export type { default as IFormProps } from './IFormProps';
 
 export type { default as IQueryParams } from './IQueryParams';
+export type { default as IResponseError } from './IResponseError';

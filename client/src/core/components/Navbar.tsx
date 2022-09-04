@@ -1,24 +1,29 @@
 import packageInfo from '../../../package.json';
 import { FC } from 'react';
-import { Location, useLocation } from 'react-router';
+import { Location, useLocation, useNavigate } from 'react-router';
 import { logOut } from '../../features/user/userSlice';
-import { useAppDispatch } from '../../store/hooks';
+import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import logo from '../images/logo.png'
 import Button from './Button';
 
 const appVersion = packageInfo.version;
 
+const availableRoutes = ['/home']
+
 const Navbar: FC = () => {
+    const user = useAppSelector(state => state.user)
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const location: Location = useLocation()
 
-    //dont show navbar on login screen
-    if (location.pathname === '/') {
+    //dont show navbar on login screen or on 404 screen
+    if (!availableRoutes.includes(location.pathname) || !user?._id) {
         return null;
     }
 
     const handleLogOut = (): void => {
         dispatch(logOut());
+        navigate('/');
     }
 
     return (

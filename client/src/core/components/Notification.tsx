@@ -1,33 +1,32 @@
-import React, { FC, useEffect, useState } from 'react'
+import React, { FC, useEffect } from 'react'
+import { clearError } from '../../features/error/errorSlice';
+import { useAppDispatch } from '../../store/hooks'
 import { INotificationProps } from '../interfaces'
 
 const Notification: FC<INotificationProps> = ({ type, message, timeStamp }) => {
-    const [isVisible, setIsVisible] = useState<boolean>(true);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const timeout = setTimeout(() => {
-            setIsVisible(false);
+            dispatch(clearError());
         }, 3000)
 
         return (() => {
-            setIsVisible(false);
             clearTimeout(timeout);
         })
     }, [])
 
     return (
         <React.Fragment>
-            {isVisible &&
-                <div className='notification__wrap'>
-                    <div className={`notification__${type}`}>
-                        <span className='notification__item notification__type'>{type}</span>
-                        <span className='notification__item notification__message'>{message}</span>
-                        <span className='notification__item notification__timeStamp'>{timeStamp}</span>
-                    </div>
+            <div className='notification__wrap'>
+                <div className={`notification__${type}`}>
+                    <span className='notification__item notification__type'>{type}</span>
+                    <span className='notification__item notification__message'>{message}</span>
+                    <span className='notification__item notification__timeStamp'>{timeStamp}</span>
                 </div>
-            }
+            </div>
         </React.Fragment>
     )
 }
 
-export default Notification
+export default Notification;

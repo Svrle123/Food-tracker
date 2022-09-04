@@ -2,6 +2,7 @@ import User from "../models/user";
 import { Request, Response } from "express";
 import { HydratedDocument } from "mongoose";
 import { IUser, ISignInBody } from "../interfaces";
+import ERROR_CODES from "../error-codes";
 
 export const signUp = async (req: Request, res: Response) => {
     const userDetails: IUser = req.body;
@@ -9,7 +10,7 @@ export const signUp = async (req: Request, res: Response) => {
     const emailTaken: IUser | null = await User.findOne<IUser>({ email: userDetails.email }).lean();
 
     if (emailTaken) {
-        return res.status(400).json({ message: "User with that email already exists!" })
+        return res.status(400).json({ message: ERROR_CODES[1002], errorCode: 1002 })
     }
 
     try {
@@ -33,13 +34,13 @@ export const signIn = async (req: Request, res: Response) => {
         }
 
         if (!isValidUser) {
-            return res.status(400).json({ message: "User with that email/username doesn't exist!" });
+            return res.status(400).json({ message: ERROR_CODES[1000], errorCode: 1000 });
         }
 
         if (isValidUser.password === password) {
             res.status(200).json({ ...isValidUser, password: "" });
         } else {
-            res.status(400).json({ message: "Password is incorrect!" });
+            res.status(400).json({ message: ERROR_CODES[1001], errorCode: 1001 });
         }
     } catch (error) {
         res.status(500).json(error);

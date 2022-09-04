@@ -1,10 +1,10 @@
-import React, { FC, useState } from 'react'
+import { FC, useState, MouseEvent } from 'react'
 import { SignInForm, SignUpForm } from './';
 
 const RegisterLogin: FC = () => {
     const [isLogIn, setIsLogIn] = useState<boolean>(true);
 
-    const handleFormChange = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    const handleFormChange = (event: MouseEvent<HTMLButtonElement>): void => {
         event.preventDefault();
         setIsLogIn(!isLogIn);
     }
