@@ -1,27 +1,24 @@
+import { FC, Fragment } from 'react'
 import { map } from 'lodash';
-import React, { FC } from 'react'
 import { IFoodResponse } from '../interfaces';
-import Pagination from './TablePagination';
-import TableFilter from './TableFilter';
-import TableHeader from './TableHeader'
-import TableRow from './TableRow';
+import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
 
 const Table: FC<IFoodResponse> = ({ currentPage, data, totalPages }) => {
     return (
-        <React.Fragment>
+        <Fragment>
             <TableFilter />
             <table>
                 <TableHeader />
                 <tbody>
-                    {map(data, item => (  //check this potential fire hazard
+                    {map(data, item => (  //TODO: check this potential fire hazard
                         <TableRow key={item.name} {...item} onClick={() => { }} />
                     ))}
                 </tbody>
                 <tfoot>
-                    <Pagination currentPage={currentPage} totalPages={totalPages} onClick={() => { }} />
+                    <TablePagination currentPage={currentPage} totalPages={totalPages} onClick={() => { }} />
                 </tfoot>
             </table>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

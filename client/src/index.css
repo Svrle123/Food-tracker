@@ -10,6 +10,10 @@ body {
   background-color: #545F66;
 }
 
+.invalid {
+  border: 1px solid #d21111 !important;
+}
+
 /*Start of user form*/
 .user__form__container {
   position: fixed;
@@ -211,3 +215,84 @@ body {
 }
 
 /*End of notification*/
+
+/*Start of table */
+
+.food__table table {
+  font-size: 125%;
+  white-space: nowrap;
+  margin: 0;
+  border: none;
+  border-collapse: separate;
+  border-spacing: 0;
+  table-layout: fixed;
+  border: 1px solid black;
+}
+
+table td,
+table th {
+  border: 1px solid black;
+  padding: 0.5rem 1rem;
+}
+
+table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+table tfoot {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
+table thead th,
+table tfoot th {
+  padding: 3px;
+  width: 25vw;
+  background: lightyellow;
+}
+
+table td {
+  background: #fff;
+  padding: 4px 5px;
+  text-align: center;
+}
+
+table tbody th {
+  font-weight: 100;
+  font-style: italic;
+  text-align: left;
+  position: relative;
+}
+
+table thead th:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: lightyellow;
+}
+
+table thead th:last-child {
+  position: sticky;
+  right: 0;
+  z-index: 2;
+  background: lightyellow;
+}
+
+table tbody th {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: lightyellow;
+}
+
+table tbody td:last-child {
+  position: sticky;
+  right: 0;
+  background: lightyellow;
+  z-index: 1;
+}
+
+/*End of table */

@@ -5,7 +5,7 @@ const defaultHeaders = {
     name: "Name",
     type: "Type",
     calories: "Calories",
-    carbohydrates: "arbohydrates",
+    carbohydrates: "Carbohydrates",
     fat: "Fat",
     protein: "Protein",
     fiber: "Fiber",

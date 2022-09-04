@@ -1,9 +1,9 @@
-import React from 'react'
+import { FC, Fragment } from 'react'
 import { IInputProps } from '../interfaces'
 
-const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
+const Input: FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id, ref, required }) => {
     return (
-        <React.Fragment>
+        <Fragment>
             {label && <label htmlFor={id}>{label}</label>}
             <input
                 className={className}
@@ -12,8 +12,10 @@ const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value,
                 value={value}
                 type={type}
                 id={id}
+                ref={ref}
+                required={required}
             />
-        </React.Fragment>
+        </Fragment>
     )
 }
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState, useMemo } from 'react'
+import { FC, useEffect, useState, useMemo, Fragment, ChangeEvent } from 'react'
 import Dropdown from './Dropdown'
 import Input from './Input'
 import { useService } from '../contexts/ServiceProvider'
@@ -23,17 +23,17 @@ const TableFilter: FC = () => {
 
     useEffect(() => {
         const fetchOnSearch = async () => {
-            const response: IFoodResponse = await foodRouteService.get({ searchQuery: searchValue.trim(), type: selectedType, page: 1, rpp: 2 });
+            const response: IFoodResponse = await foodRouteService.get({ searchQuery: searchValue.trim(), type: selectedType, page: 1, rpp: 20 });
             dispatch(setFood(response));
         }
         fetchOnSearch();
     }, [searchValue, selectedType]);
 
-    const handleSearch = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleSearch = async (event: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(event.currentTarget.value);
     }
 
-    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>): void => {
+    const handleSelect = (event: ChangeEvent<HTMLSelectElement>): void => {
         setSelectedType(event.currentTarget.value);
     }
 
@@ -43,7 +43,7 @@ const TableFilter: FC = () => {
     return (
         <div>
             {dropdownData.length > 0 &&
-                <React.Fragment>
+                <Fragment>
                     <Input
                         className='table__filter'
                         placeholder='Search'
@@ -54,7 +54,7 @@ const TableFilter: FC = () => {
                         id='filter'
                     />
                     {DropdownComponent}
-                </React.Fragment>
+                </Fragment>
             }
         </div>
     )
