@@ -1,14 +1,10 @@
-import { FC, ReactNode, createContext } from "react";
+import { FC, createContext, useContext, PropsWithChildren } from "react";
 import { userRouteService, IUserRouteService } from "../services/UserRouteService";
 import { foodRouteService, IFoodRouteService } from '../services/FoodRouteService';
 
 interface IServices {
     userRouteService: IUserRouteService
     foodRouteService: IFoodRouteService
-}
-
-type ServiceProviderProps = {
-    children: ReactNode
 }
 
 const services: IServices = {
@@ -18,10 +14,12 @@ const services: IServices = {
 
 export const ServiceContext = createContext<IServices>(services)
 
-export const ServiceProvider: FC<ServiceProviderProps> = ({ children }) => {
+export const ServiceProvider: FC<PropsWithChildren> = ({ children }) => {
     return (
         <ServiceContext.Provider value={services}>
             {children}
         </ServiceContext.Provider>
     )
 }
+
+export const useService = () => useContext<IServices>(ServiceContext);

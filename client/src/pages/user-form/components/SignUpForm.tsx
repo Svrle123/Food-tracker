@@ -1,6 +1,6 @@
 import React, { FC, useState, useContext } from 'react'
 import { Button, Input } from '../../../core/components'
-import { ServiceContext } from '../../../core/contexts/ServiceProvider';
+import { useService } from '../../../core/contexts/ServiceProvider';
 import { ISignUpData, IFormProps } from '../../../core/interfaces';
 
 const initialState: ISignUpData = {
@@ -13,8 +13,8 @@ const initialState: ISignUpData = {
 }
 
 const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
-  const [formValues, setFormValues] = useState<ISignUpData>(initialState)
-  const { userRouteService } = useContext(ServiceContext)
+  const [formValues, setFormValues] = useState<ISignUpData>(initialState);
+  const { userRouteService } = useService();
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     setFormValues({ ...formValues, [event.currentTarget.id]: event.currentTarget.value });

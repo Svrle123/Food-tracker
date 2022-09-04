@@ -1,7 +1,7 @@
-import React, { FC, useContext, useEffect, useState, useMemo } from 'react'
+import React, { FC, useEffect, useState, useMemo } from 'react'
 import Dropdown from './Dropdown'
 import Input from './Input'
-import { ServiceContext } from '../contexts/ServiceProvider'
+import { useService } from '../contexts/ServiceProvider'
 import { IFoodResponse } from '../interfaces'
 import { useAppDispatch } from '../../store/hooks'
 import { setFood } from '../../features/food/foodSlice'
@@ -10,7 +10,7 @@ const TableFilter: FC = () => {
     const [searchValue, setSearchValue] = useState<string>("");
     const [selectedType, setSelectedType] = useState<string>("");
     const [dropdownData, setDropdownData] = useState<string[]>([]);
-    const { foodRouteService } = useContext(ServiceContext);
+    const { foodRouteService } = useService();
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -46,7 +46,7 @@ const TableFilter: FC = () => {
                 <React.Fragment>
                     <Input
                         className='table__filter'
-                        placeholder='Minimum 3 letters for search'
+                        placeholder='Search'
                         onChange={(e) => handleSearch(e)}
                         value={searchValue}
                         label=''

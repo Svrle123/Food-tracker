@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Api } from './Api';
+import Api from './Api';
 import { IUser, ISignInData } from '../interfaces';
 
 class UserRouteService extends Api {
@@ -17,5 +17,10 @@ class UserRouteService extends Api {
     }
 }
 
-export const userRouteService = new UserRouteService();
-export type IUserRouteService = typeof userRouteService;
+const userRouteService = new UserRouteService();
+type IUserRouteService = typeof userRouteService;
+
+export {
+    userRouteService,
+    type IUserRouteService,
+}

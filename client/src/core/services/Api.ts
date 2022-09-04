@@ -2,7 +2,7 @@ import axios, { AxiosResponse } from "axios";
 import uritemplate from 'uritemplate';
 import { IQueryParams } from "../interfaces";
 
-export class Api {
+export default class Api {
     baseUrl: string = "http://localhost:4000" //while in development
     constructor(endpoint: string) {
         this.baseUrl += endpoint;

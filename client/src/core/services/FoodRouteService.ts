@@ -1,5 +1,5 @@
 import axios, { AxiosResponse } from 'axios';
-import { Api } from './Api';
+import Api from './Api';
 
 class FoodRouteService extends Api {
     constructor() {
@@ -11,5 +11,11 @@ class FoodRouteService extends Api {
         return response.data;
     }
 }
-export const foodRouteService = new FoodRouteService();
-export type IFoodRouteService = typeof foodRouteService;
+
+const foodRouteService = new FoodRouteService();
+type IFoodRouteService = typeof foodRouteService;
+
+export {
+    foodRouteService,
+    type IFoodRouteService
+}
