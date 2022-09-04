@@ -1,9 +1,9 @@
-import React, { FC, useContext, useEffect } from 'react'
-import Table from '../../../core/components/Table';
-import { IFoodResponse } from '../../../core/interfaces';
-import { useService } from '../../../core/contexts/ServiceProvider';
-import { useAppSelector, useAppDispatch } from '../../../store/hooks';
-import { setFood } from '../../../features/food/foodSlice';
+import { FC, useEffect } from 'react'
+import { Table } from '../../core/components';
+import { IFoodResponse } from '../../core/interfaces';
+import { useService } from '../../core/contexts/ServiceProvider';
+import { useAppSelector, useAppDispatch } from '../../store/hooks';
+import { setFood } from '../../features/food/foodSlice';
 
 const MainLayout: FC = () => {
     const { foodRouteService } = useService();

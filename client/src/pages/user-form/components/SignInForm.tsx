@@ -37,6 +37,7 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
         try {
             const response = await userRouteService.signIn(userData);
             dispatch(logIn(response));
+            debugger
             navigate('/home');
         } catch (error: any) {
             formErrorHandler({ ...error.response.data, status: error.response.status });
@@ -76,11 +77,15 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
                 type='password'
                 id='password'
             />
-            <Button className='user__form__button' type='submit' label='Log in' />
+            <Button
+                className='user__form__button'
+                type='submit'
+                label='Sign in'
+            />
             <Button
                 className='user__form__button'
                 onClick={(e) => changeForm(e)}
-                label='Switch to Register' />
+                label='Switch to Sign up' />
         </form>
     )
 }

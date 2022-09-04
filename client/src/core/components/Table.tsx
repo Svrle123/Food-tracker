@@ -1,10 +1,7 @@
 import { map } from 'lodash';
 import React, { FC } from 'react'
 import { IFoodResponse } from '../interfaces';
-import Pagination from './TablePagination';
-import TableFilter from './TableFilter';
-import TableHeader from './TableHeader'
-import TableRow from './TableRow';
+import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
 
 const Table: FC<IFoodResponse> = ({ currentPage, data, totalPages }) => {
     return (
@@ -18,7 +15,7 @@ const Table: FC<IFoodResponse> = ({ currentPage, data, totalPages }) => {
                     ))}
                 </tbody>
                 <tfoot>
-                    <Pagination currentPage={currentPage} totalPages={totalPages} onClick={() => { }} />
+                    <TablePagination currentPage={currentPage} totalPages={totalPages} onClick={() => { }} />
                 </tfoot>
             </table>
         </React.Fragment>

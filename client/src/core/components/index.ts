@@ -6,6 +6,7 @@ export { default as Navbar } from "./Navbar";
 export { default as Notification } from "./Notification";
 
 export { default as Table } from "./Table";
+export { default as TableHeader } from "./TableHeader";
 export { default as TableRow } from "./TableRow";
 export { default as TableFilter } from "./TableFilter";
 export { default as TablePagination } from "./TablePagination";

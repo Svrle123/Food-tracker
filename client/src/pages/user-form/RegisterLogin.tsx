@@ -1,5 +1,5 @@
 import { FC, useState, MouseEvent, FormEvent } from 'react'
-import { SignInForm, SignUpForm } from './';
+import { SignInForm, SignUpForm } from './components';
 
 const RegisterLogin: FC = () => {
     const [isLogIn, setIsLogIn] = useState<boolean>(true);
@@ -22,4 +22,4 @@ const RegisterLogin: FC = () => {
     )
 }
 
-export default RegisterLogin
+export default RegisterLogin;

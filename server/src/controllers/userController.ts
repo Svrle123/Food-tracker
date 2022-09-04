@@ -32,9 +32,9 @@ export const signIn = async (req: Request, res: Response) => {
 
     try {
         if (userNameOrEmail.includes("@")) {
-            isValidUser = await User.findOne<IUser>({ email: userNameOrEmail });
+            isValidUser = await User.findOne<IUser>({ email: userNameOrEmail }).lean();
         } else {
-            isValidUser = await User.findOne<IUser>({ userName: userNameOrEmail });
+            isValidUser = await User.findOne<IUser>({ userName: userNameOrEmail }).lean();
         }
 
         if (!isValidUser) {

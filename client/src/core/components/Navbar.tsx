@@ -17,7 +17,7 @@ const Navbar: FC = () => {
     const location: Location = useLocation()
 
     //dont show navbar on login screen or on 404 screen
-    if (!availableRoutes.includes(location.pathname) || !user?._id) {
+    if (!availableRoutes.includes(location.pathname) && !user?._id) {
         return null;
     }
 
@@ -33,9 +33,9 @@ const Navbar: FC = () => {
                 <figcaption className='app__version'>{'v' + appVersion}</figcaption>
             </div>
             <ul className='nav__options'>
-                <li><Button className='nav__button' onClick={() => { }} label='Home' /></li>
-                <li><Button className='nav__button' onClick={() => { }} label='Summary' /></li>
-                <li><Button className='nav__button' onClick={handleLogOut} label='Log out' /></li>
+                <li><Button className='nav__button' onClick={() => navigate('/home')} label='Home' /></li>
+                <li><Button className='nav__button' onClick={() => navigate('/summary')} label='Summary' /></li>
+                <li><Button className='nav__button' onClick={handleLogOut} label='Sign out' /></li>
             </ul>
         </header>
     );

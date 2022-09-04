@@ -12,7 +12,7 @@ export const clearAndSetError = (params: INotificationProps) => async (dispatch:
     dispatch(clearError());
     setTimeout(() => {
         dispatch(setError(params))
-    }, 0); //Finish clear before setting new state
+    }, 0); //Finish clear before setting new state to reset Notification component
 }
 
 export const errorSlice = createSlice({
