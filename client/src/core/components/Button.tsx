@@ -1,5 +1,5 @@
 import React from 'react'
-import { IButtonProps } from './interfaces/IButtonProps'
+import { IButtonProps } from '../interfaces'
 
 const Button: React.FC<IButtonProps> = ({ className, onClick, label }) => {
     return (

@@ -3,6 +3,6 @@ type Entries = {
     amount: number,
 }
 
-export interface IFoodEntry {
+export default interface IFoodEntry {
     entries: Entries[]
 }

@@ -1,4 +1,4 @@
-export interface ISignInBody {
+export default interface ISignInBody {
     userNameOrEmail: string,
     password: string,
 }

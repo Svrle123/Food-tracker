@@ -1,4 +1,4 @@
-export interface IButtonProps {
+export default interface IButtonProps {
     className: string,
     onClick: (e: React.MouseEvent<HTMLButtonElement>) => void,
     label: string

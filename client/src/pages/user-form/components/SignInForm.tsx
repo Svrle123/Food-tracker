@@ -3,9 +3,8 @@ import { Button, Input } from '../../../core/components';
 import { useAppDispatch } from '../../../store/hooks';
 import { logIn } from '../../../features/user/userSlice';
 
-import { ServiceContext } from '../../../core/contexts/ServiceProvider';
-import { ISignInData } from '../interfaces/ISignInData';
-import { IFormProps } from '../interfaces/IFormProps';
+import { useService } from '../../../core/contexts/ServiceProvider';
+import { ISignInData, IFormProps } from '../../../core/interfaces';
 
 const initialState: ISignInData = {
     userNameOrEmail: '',
@@ -14,7 +13,7 @@ const initialState: ISignInData = {
 
 const SignInForm: FC<IFormProps> = ({ changeForm }) => {
     const [userData, setUserData] = useState<ISignInData>(initialState);
-    const { userRouteService } = useContext(ServiceContext);
+    const { userRouteService } = useService();
     const dispatch = useAppDispatch();
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {

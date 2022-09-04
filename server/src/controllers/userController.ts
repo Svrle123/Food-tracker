@@ -1,8 +1,7 @@
 import User from "../models/user";
 import { Request, Response } from "express";
 import { HydratedDocument } from "mongoose";
-import { IUser } from "../models/interfaces/IUser";
-import { ISignInBody } from "./interfaces/ISignInBody";
+import { IUser, ISignInBody } from "../interfaces";
 
 export const signUp = async (req: Request, res: Response) => {
     const userDetails: IUser = req.body;

@@ -1,10 +1,10 @@
 import React from 'react'
-import { IInputProps } from './interfaces/IInputProps'
+import { IInputProps } from '../interfaces'
 
 const Input: React.FC<IInputProps> = ({ className, placeholder, onChange, value, type, label, id }) => {
     return (
         <React.Fragment>
-            <label htmlFor={id}>{label}</label>
+            {label && <label htmlFor={id}>{label}</label>}
             <input
                 className={className}
                 placeholder={placeholder}
