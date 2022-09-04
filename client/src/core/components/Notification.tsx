@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react'
+import { FC, Fragment, useEffect } from 'react'
 import { clearError } from '../../features/error/errorSlice';
 import { useAppDispatch } from '../../store/hooks'
 import { INotificationProps } from '../interfaces'
@@ -17,7 +17,7 @@ const Notification: FC<INotificationProps> = ({ type, message, timeStamp }) => {
     }, [])
 
     return (
-        <React.Fragment>
+        <Fragment>
             <div className='notification__wrap'>
                 <div className={`notification__${type}`}>
                     <span className='notification__item notification__type'>{type}</span>
@@ -25,7 +25,7 @@ const Notification: FC<INotificationProps> = ({ type, message, timeStamp }) => {
                     <span className='notification__item notification__timeStamp'>{timeStamp}</span>
                 </div>
             </div>
-        </React.Fragment>
+        </Fragment>
     )
 }
 

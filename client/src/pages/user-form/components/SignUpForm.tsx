@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Button, Input } from '../../../core/components';
 import { useService } from '../../../core/contexts/ServiceProvider';
 import { ISignUpData, IFormProps, ISignUpValidation, IResponseError } from '../../../core/interfaces';
@@ -29,12 +29,12 @@ const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
   const { userRouteService } = useService();
   const dispatch = useAppDispatch();
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     setValidation(initialValidationState);
     setFormValues({ ...formValues, [event.currentTarget.id]: event.currentTarget.value });
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
 
     if (!validateRegisterForm({ formValues, dispatch, setValidation })) {

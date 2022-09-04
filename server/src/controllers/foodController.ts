@@ -2,6 +2,7 @@ import Food from "../models/food";
 import { Request, Response } from 'express';
 import { HydratedDocument } from 'mongoose';
 import { IFood, IFoodQuery } from '../interfaces';
+import { constructFoodFilter } from "../utils";
 
 export const createFood = async (req: Request, res: Response) => {
     const food: IFood = req.body;
@@ -23,17 +24,14 @@ export const getFood = async (req: Request, res: Response) => {
     const name: RegExp = new RegExp(searchQuery, "i");
     let food: IFood[];
     let count: number = 1;
-    //refactor this for the love of all that is holy
-    if (type && searchQuery) {
-        food = await Food.find<IFood>({ type: type, name: name }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+
+    const filter = constructFoodFilter(type, searchQuery ? name : null);
+
+    if (type || searchQuery) {
+        food = await Food.find<IFood>({ ...filter }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
         count = await Food.find({ type: type, name: name }).countDocuments();
-    } else if (type) {
-        food = await Food.find<IFood>({ type: type }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
-    } else if (name) {
-        food = await Food.find<IFood>({ name: name }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
     } else {
         food = await Food.find<IFood>().limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
-
     }
 
     res.status(200).json({

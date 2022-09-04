@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react'
+import { FC, Fragment, useEffect } from 'react'
 import { Table } from '../../core/components';
 import { IFoodResponse } from '../../core/interfaces';
 import { useService } from '../../core/contexts/ServiceProvider';
@@ -12,14 +12,18 @@ const MainLayout: FC = () => {
 
     useEffect(() => {
         const initData = async () => {
-            const response: IFoodResponse = await foodRouteService.get({ page: 1, rpp: 2 });
+            const response: IFoodResponse = await foodRouteService.get({ page: 1, rpp: 20 });
             dispatch(setFood(response));
         }
         initData();
     }, [])
 
     return (
-        <Table {...tableData} />
+        <Fragment>
+            <div className='food__table'>
+                <Table {...tableData} />
+            </div>
+        </Fragment>
     )
 }
 
