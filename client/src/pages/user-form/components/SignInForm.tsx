@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, FormEvent, useState, useRef } from 'react'
+import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { Button, Input } from '../../../core/components';
 import { useAppDispatch } from '../../../store/hooks';
 import { logIn } from '../../../features/user/userSlice';

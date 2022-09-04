@@ -8,5 +8,6 @@ export default interface IInputProps {
     label: string,
     type: string,
     id: string,
-    ref?: MutableRefObject<HTMLInputElement> | MutableRefObject<null> | undefined
+    ref?: MutableRefObject<HTMLInputElement> | MutableRefObject<null> | undefined,
+    required?: boolean,
 }

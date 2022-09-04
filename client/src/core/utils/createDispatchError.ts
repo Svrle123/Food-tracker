@@ -12,6 +12,6 @@ export default function createDispatchError(error: IResponseError): INotificatio
     return {
         type: type,
         message: error.message,
-        timeStamp: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
+        timeStamp: new Date().toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', second: '2-digit', hour12: true })
     }
 }
