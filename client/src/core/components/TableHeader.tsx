@@ -11,11 +11,19 @@ const defaultHeaders = {
     fiber: "Fiber",
 }
 
-const TableHeader: FC = () => {
+const selectedHeaders = {
+    calories: "Calories",
+    carbohydrates: "Carbohydrates",
+    fat: "Fat",
+    protein: "Protein",
+    fiber: "Fiber",
+}
+
+const TableHeader: FC<{ isSelected: boolean }> = ({ isSelected }) => {
     return (
         <thead>
             <tr>
-                {map(defaultHeaders, header => (
+                {map(isSelected ? selectedHeaders : defaultHeaders, header => (
                     <td key={header}>{header}</td>
                 ))}
             </tr>

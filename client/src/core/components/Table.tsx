@@ -1,21 +1,21 @@
-import { FC, Fragment } from 'react'
+import { FC, Fragment, MouseEvent } from 'react'
 import { map } from 'lodash';
-import { IFoodResponse } from '../interfaces';
+import { ITableProps } from '../interfaces';
 import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
 
-const Table: FC<IFoodResponse> = ({ currentPage, data, totalPages }) => {
+const Table: FC<ITableProps> = ({ currentPage, data, totalPages, dropdownData }) => {
     return (
         <Fragment>
-            <TableFilter />
+            <TableFilter dropdownData={dropdownData} />
             <table>
-                <TableHeader />
+                <TableHeader isSelected={false} />
                 <tbody>
-                    {map(data, item => (  //TODO: check this potential fire hazard
-                        <TableRow key={item.name} {...item} onClick={() => { }} />
+                    {map(data, item => (
+                        <TableRow key={item.name} {...item} />
                     ))}
                 </tbody>
                 <tfoot>
-                    <TablePagination currentPage={currentPage} totalPages={totalPages} onClick={() => { }} />
+                    <TablePagination currentPage={currentPage} totalPages={totalPages} />
                 </tfoot>
             </table>
         </Fragment>

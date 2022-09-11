@@ -37,7 +37,6 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
         try {
             const response = await userRouteService.signIn(userData);
             dispatch(logIn(response));
-            debugger
             navigate('/home');
         } catch (error: any) {
             formErrorHandler({ ...error.response.data, status: error.response.status });

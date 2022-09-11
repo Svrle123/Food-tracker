@@ -1,6 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { IFoodResponse, IFoodState } from '../../core/interfaces';
+import { IFood, IFoodResponse, IFoodState } from '../../core/interfaces';
+
+const selectedFood: IFood = {
+    name: "",
+    type: "",
+    _id: "",
+    __v: "",
+    calories: 0,
+    carbohydrates: 0,
+    fat: 0,
+    protein: 0,
+    fiber: 0
+}
 
 const initialState: IFoodState = {
     data: {
@@ -9,6 +21,7 @@ const initialState: IFoodState = {
         totalPages: 0
     },
     foodTypes: [],
+    selectedFood
 }
 export const foodSlice = createSlice({
     name: 'foodData',
@@ -19,10 +32,16 @@ export const foodSlice = createSlice({
         },
         setTypes: (state, action: PayloadAction<string[]>) => {
             return { ...state, foodTypes: [...action.payload] };
+        },
+        setSelected: (state, action: PayloadAction<IFood>) => {
+            return { ...state, selectedFood: action.payload };
+        },
+        removeSelected: (state) => {
+            return { ...state, selectedFood };
         }
     },
 })
 
-export const { setFood, setTypes } = foodSlice.actions;
+export const { setFood, setTypes, setSelected, removeSelected } = foodSlice.actions;
 
 export default foodSlice.reducer;

@@ -1,4 +1,4 @@
 export default interface IDropdownProps {
-    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void,
+    onChange: (field: string, event: React.ChangeEvent<HTMLSelectElement>) => void,
     options: string[],
 }

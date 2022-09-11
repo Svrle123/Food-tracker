@@ -8,7 +8,7 @@ import Button from './Button';
 
 const appVersion = packageInfo.version;
 
-const availableRoutes = ['/home']
+const availableRoutes = ['/home', '/summary']
 
 const Navbar: FC = () => {
     const user = useAppSelector(state => state.user)
@@ -17,7 +17,7 @@ const Navbar: FC = () => {
     const location: Location = useLocation()
 
     //dont show navbar on login screen or on 404 screen
-    if (!availableRoutes.includes(location.pathname) && !user?._id) {
+    if (!availableRoutes.includes(location.pathname) || !user?._id) {
         return null;
     }
 

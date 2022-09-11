@@ -11,4 +11,6 @@ export { default as TableRow } from "./TableRow";
 export { default as TableFilter } from "./TableFilter";
 export { default as TablePagination } from "./TablePagination";
 
-export { default as NotFound } from './NotFound';
+export { default as SelectedFood } from "./SelectedFood";
+
+export { default as NotFound } from "./NotFound";

@@ -1,4 +1,4 @@
-const constructFoodFilter = (type: string, name: RegExp | null) => {
+const constructFoodFilter = (type: string, name: RegExp | null): object => {
     const filter: any = {};
 
     if (type) {
