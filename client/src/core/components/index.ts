@@ -10,7 +10,10 @@ export { default as TableHeader } from "./TableHeader";
 export { default as TableRow } from "./TableRow";
 export { default as TableFilter } from "./TableFilter";
 export { default as TablePagination } from "./TablePagination";
+export { default as TableEntry } from "./TableEntry";
+export { default as TableLogRow } from "./TableLogRow";
 
-export { default as SelectedFood } from "./SelectedFood";
+export { default as FoodEntry } from "./FoodEntry";
+export { default as FoodLog } from "./FoodLog";
 
 export { default as NotFound } from "./NotFound";

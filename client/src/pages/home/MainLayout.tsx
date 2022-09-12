@@ -1,5 +1,5 @@
 import { FC, Fragment, useEffect } from 'react'
-import { SelectedFood, Table } from '../../core/components';
+import { Table, FoodEntry, FoodLog } from '../../core/components';
 import { IFoodResponse } from '../../core/interfaces';
 import { useService } from '../../core/contexts/ServiceProvider';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
@@ -34,7 +34,8 @@ const MainLayout: FC = () => {
         <Fragment>
             <div className='food__table'>
                 <Table {...data} dropdownData={foodTypes} />
-                {selectedFood?._id && <SelectedFood />}
+                {selectedFood?._id && <FoodEntry />}
+                <FoodLog />
             </div>
         </Fragment>
     )

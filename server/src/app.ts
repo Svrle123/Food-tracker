@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 
 import foodRoutes from './routes/foodRoutes'
 import userRoutes from './routes/userRoutes'
+import foodLogRoutes from './routes/foodLogRoutes'
 
 const app: Application = express();
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(cors());
 
 app.use('/foods', foodRoutes);
 app.use('/users', userRoutes);
+app.use('/food-logs', foodLogRoutes);
 
 app.get('/', (_: Request, res: Response) => {
     res.send("Food tracker API");

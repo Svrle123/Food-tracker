@@ -11,7 +11,7 @@ const foodSchema = new Schema<IFood>(
         protein: Number,
         fiber: Number,
         creator: String,
-        createdAt: String,
+        createdAt: Date,
     }
 );
 

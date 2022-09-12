@@ -9,7 +9,7 @@ export const createFood = async (req: Request, res: Response) => {
     const adminId: string = req.params.adminId;
 
     try {
-        const newFood: HydratedDocument<IFood> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date().toUTCString() })
+        const newFood: HydratedDocument<IFood> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date() })
         await newFood.save();
 
         res.status(201).json(newFood);

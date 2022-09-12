@@ -1,6 +1,7 @@
 export type { default as IUser } from './IUser';
 export type { default as IFood } from './IFood';
 export type { default as IStore } from './IStore';
+export type { default as IEntries } from './IEntries';
 
 export type { default as ITablePaginationProps } from './ITablePaginationProps';
 export type { default as IFoodResponse } from './IFoodResponse';
