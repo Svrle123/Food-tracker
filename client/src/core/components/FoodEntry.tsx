@@ -51,35 +51,37 @@ const FoodEntry: FC = () => {
     }
 
     return (
-        <div>
-            <Fragment>
-                <h3>{selected?.name}</h3>
-                <Input
-                    className="amount__input"
-                    placeholder="Amount in grams"
-                    onChange={(e) => handleAmountChange(e)}
-                    value={amount}
-                    label="Amount"
-                    type="text"
-                    id="amount"
-                />
-                <Button
-                    onClick={() => handleSubmitSelected()}
-                    className={""}
-                    label={"Add to log"}
-                />
-                <Button
-                    onClick={() => handleCancelSelect()}
-                    className={""}
-                    label={"X"} />
-                <table>
-                    <TableHeader isSelected={true} />
-                    <tbody>
-                        <TableEntry {...calculated} />
-                    </tbody>
-                </table>
-            </Fragment>
-        </div>
+        <Fragment>
+            {selected?._id &&
+                <div>
+                    <h3>{selected?.name}</h3>
+                    <Input
+                        className="amount__input"
+                        placeholder="Amount in grams"
+                        onChange={(e) => handleAmountChange(e)}
+                        value={amount}
+                        label="Amount"
+                        type="text"
+                        id="amount"
+                    />
+                    <Button
+                        onClick={() => handleSubmitSelected()}
+                        className={""}
+                        label={"Add to log"}
+                    />
+                    <Button
+                        onClick={() => handleCancelSelect()}
+                        className={""}
+                        label={"X"} />
+                    <table>
+                        <TableHeader isSelected={true} />
+                        <tbody>
+                            <TableEntry {...calculated} />
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </Fragment>
     )
 }
 

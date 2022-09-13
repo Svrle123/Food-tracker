@@ -25,6 +25,7 @@ const FoodLog: FC = () => {
         }
 
         await foodLogRouteService.post(payload);
+        dispatch(clearLog())
     }
 
     return (

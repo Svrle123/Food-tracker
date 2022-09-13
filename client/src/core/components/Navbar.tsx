@@ -1,7 +1,7 @@
 import packageInfo from '../../../package.json';
 import { FC } from 'react';
 import { Location, useLocation, useNavigate } from 'react-router';
-import { logOut } from '../../features/user/userSlice';
+import { logout } from '../../features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import logo from '../images/logo.png'
 import Button from './Button';
@@ -22,7 +22,7 @@ const Navbar: FC = () => {
     }
 
     const handleLogOut = (): void => {
-        dispatch(logOut());
+        dispatch(logout());
         navigate('/');
     }
 

@@ -34,7 +34,7 @@ const MainLayout: FC = () => {
         <Fragment>
             <div className='food__table'>
                 <Table {...data} dropdownData={foodTypes} />
-                {selectedFood?._id && <FoodEntry />}
+                <FoodEntry />
                 <FoodLog />
             </div>
         </Fragment>
