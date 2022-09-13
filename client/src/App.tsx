@@ -5,7 +5,7 @@ import { ServiceProvider } from './core/contexts/ServiceProvider';
 import { RegisterLogin } from './pages/user-form';
 import { Navbar, Notification, NotFound } from './core/components';
 import { MainLayout } from './pages/home';
-import { logIn } from './features/user/userSlice';
+import { login } from './features/user/userSlice';
 
 
 const App: FC = () => {
@@ -15,7 +15,7 @@ const App: FC = () => {
   const sessionUser: string | null = window.sessionStorage.getItem('user');
 
   if (sessionUser && !user._id) {
-    dispatch(logIn({ ...JSON.parse(sessionUser) }));
+    dispatch(login({ ...JSON.parse(sessionUser) }));
   }
 
   return (

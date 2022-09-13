@@ -7,5 +7,5 @@ export default interface IFood {
     protein: number,
     fiber: number,
     creator: string,
-    createdAt: string,
+    createdAt: Date,
 }

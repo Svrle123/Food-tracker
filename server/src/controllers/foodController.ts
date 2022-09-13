@@ -9,7 +9,7 @@ export const createFood = async (req: Request, res: Response) => {
     const adminId: string = req.params.adminId;
 
     try {
-        const newFood: HydratedDocument<IFood> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date().toUTCString() })
+        const newFood: HydratedDocument<IFood> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date() })
         await newFood.save();
 
         res.status(201).json(newFood);
@@ -32,6 +32,7 @@ export const getFood = async (req: Request, res: Response) => {
         count = await Food.find({ type: type, name: name }).countDocuments();
     } else {
         food = await Food.find<IFood>().limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+        count = await Food.find().countDocuments();
     }
 
     res.status(200).json({

@@ -1,7 +1,7 @@
 import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { Button, Input } from '../../../core/components';
 import { useAppDispatch } from '../../../store/hooks';
-import { logIn } from '../../../features/user/userSlice';
+import { login } from '../../../features/user/userSlice';
 import { clearAndSetError } from '../../../features/error/errorSlice';
 
 import { useService } from '../../../core/contexts/ServiceProvider';
@@ -36,8 +36,7 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
         event.preventDefault();
         try {
             const response = await userRouteService.signIn(userData);
-            dispatch(logIn(response));
-            debugger
+            dispatch(login(response));
             navigate('/home');
         } catch (error: any) {
             formErrorHandler({ ...error.response.data, status: error.response.status });

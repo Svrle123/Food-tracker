@@ -15,17 +15,17 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        logIn: (state: IUser, action: PayloadAction<IUser>) => {
+        login: (state: IUser, action: PayloadAction<IUser>) => {
             window.sessionStorage.setItem('user', JSON.stringify(action.payload));
             return { ...state, ...action.payload };
         },
-        logOut: () => {
+        logout: () => {
             window.sessionStorage.removeItem('user');
             return { ...initialState };
         },
     },
 })
 
-export const { logIn, logOut } = userSlice.actions
+export const { login, logout } = userSlice.actions
 
 export default userSlice.reducer

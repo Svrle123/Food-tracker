@@ -1,27 +1,41 @@
 import { FC, Fragment, useEffect } from 'react'
-import { Table } from '../../core/components';
+import { Table, FoodEntry, FoodLog } from '../../core/components';
 import { IFoodResponse } from '../../core/interfaces';
 import { useService } from '../../core/contexts/ServiceProvider';
 import { useAppSelector, useAppDispatch } from '../../store/hooks';
-import { setFood } from '../../features/food/foodSlice';
+import { setFood, setTypes } from '../../features/food/foodSlice';
 
 const MainLayout: FC = () => {
     const { foodRouteService } = useService();
-    const tableData = useAppSelector(state => state.food.data);
+    const { food: { data, foodTypes, selectedFood }, table } = useAppSelector(state => state);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
-        const initData = async () => {
-            const response: IFoodResponse = await foodRouteService.get({ page: 1, rpp: 20 });
+        const fetchData = async () => {
+            const response: IFoodResponse = await foodRouteService.get({ ...table });
             dispatch(setFood(response));
         }
-        initData();
-    }, [])
+        const initDropdown = async () => {
+            const response = await foodRouteService.getTypes()
+            dispatch(setTypes(response));
+        }
+        if (foodTypes.length == 0) {
+            initDropdown();
+        }
+        fetchData();
+    }, [
+        table.searchQuery,
+        table.type,
+        table.page,
+        table.rpp,
+    ])
 
     return (
         <Fragment>
             <div className='food__table'>
-                <Table {...tableData} />
+                <Table {...data} dropdownData={foodTypes} />
+                <FoodEntry />
+                <FoodLog />
             </div>
         </Fragment>
     )

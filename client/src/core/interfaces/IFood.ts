@@ -6,4 +6,7 @@ export default interface IFood {
     fat: number,
     protein: number,
     fiber: number,
+    amount?: number,
+    _id: string,
+    __v: string,
 }

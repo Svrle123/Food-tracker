@@ -1,10 +1,18 @@
 import { FC } from 'react'
-import { IFoodTableRow } from '../interfaces'
+import { setSelected } from '../../features/food/foodSlice';
+import { useAppDispatch } from '../../store/hooks';
+import { IFood } from '../interfaces'
 
-const TableRow: FC<IFoodTableRow> = (props) => {
-    const { name, type, calories, carbohydrates, fat, protein, fiber, onClick } = props;
+const TableRow: FC<IFood> = (props) => {
+    const { name, type, calories, carbohydrates, fat, protein, fiber } = props;
+    const dispatch = useAppDispatch();
+
+    const handleSelect = () => {
+        dispatch(setSelected(props));
+    }
+
     return (
-        <tr onClick={onClick}>
+        <tr onMouseDown={() => handleSelect()}>
             <td>{name}</td>
             <td>{type}</td>
             <td>{calories}</td>
