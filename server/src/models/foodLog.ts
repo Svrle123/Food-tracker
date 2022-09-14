@@ -4,8 +4,8 @@ import { IFoodLog } from "../interfaces";
 const foodLogSchema = new Schema<IFoodLog>(
     {
         timeStamp: Date,
-        userId: String,
-        foodEntries: [String]
+        user: { type: Schema.Types.ObjectId, ref: "User" },
+        foodEntries: [{ type: Schema.Types.ObjectId, ref: "FoodEntry" }]
     }
 );
 

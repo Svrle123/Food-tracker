@@ -10,7 +10,7 @@ const foodSchema = new Schema<IFood>(
         fat: Number,
         protein: Number,
         fiber: Number,
-        creator: String,
+        creator: { type: Schema.Types.ObjectId, ref: "User" },
         createdAt: Date,
     }
 );

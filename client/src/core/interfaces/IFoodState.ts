@@ -1,7 +1,7 @@
 import { IFood, IFoodResponse } from "./";
 
 export default interface IFoodState {
-    data: IFoodResponse,
+    foodData: IFoodResponse,
     foodTypes: string[],
     selectedFood: IFood
 }

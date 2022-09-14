@@ -3,7 +3,8 @@ import userReducer from '../features/user/userSlice';
 import foodReducer from '../features/food/foodSlice';
 import errorReducer from '../features/error/errorSlice';
 import tableReducer from '../features/table/tableSlice';
-import entriesReducer from '../features/entries/entriesSlice';
+import entriesReducer from '../features/foodEntries/foodEntriesSlice';
+import foodLogsReducer from '../features/foodLogs/foodLogsSlice';
 
 const combinedReducer = combineReducers({
     user: userReducer,
@@ -11,6 +12,7 @@ const combinedReducer = combineReducers({
     error: errorReducer,
     table: tableReducer,
     entries: entriesReducer,
+    foodLogs: foodLogsReducer,
 });
 
 /**

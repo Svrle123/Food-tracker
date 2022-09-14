@@ -1,6 +1,6 @@
 import { ChangeEvent, FC, Fragment, useEffect, useState } from "react"
 import { Input, Button, TableEntry, TableHeader } from ".";
-import { addEntry } from "../../features/entries/entriesSlice";
+import { addEntry } from "../../features/foodEntries/foodEntriesSlice";
 import { removeSelected } from "../../features/food/foodSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { IFood } from "../interfaces";

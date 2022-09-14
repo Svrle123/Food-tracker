@@ -3,7 +3,7 @@ import { IFoodEntry } from "../interfaces";
 
 const foodEntrySchema = new Schema<IFoodEntry>(
     {
-        foodId: String,
+        food: { type: Schema.Types.ObjectId, ref: "Food" },
         amount: Number
     }
 );

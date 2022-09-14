@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { createFoodLog } from "../controllers/foodLogController";
+import { createFoodLog, getTodaysLogs } from "../controllers/foodLogController";
 
 const router: Router = Router();
 
-router.post('/', createFoodLog)
+router.get('/today/:userId', getTodaysLogs);
+router.post('/', createFoodLog);
 
 export default router;

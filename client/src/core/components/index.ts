@@ -15,5 +15,6 @@ export { default as TableLogRow } from "./TableLogRow";
 
 export { default as FoodEntry } from "./FoodEntry";
 export { default as FoodLog } from "./FoodLog";
+export { default as TodayLogs } from './TodayLogs';
 
 export { default as NotFound } from "./NotFound";

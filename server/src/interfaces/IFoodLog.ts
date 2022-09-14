@@ -1,5 +1,5 @@
 export default interface IFoodLog {
     timeStamp: Date,
-    userId: string,
+    user: string,
     foodEntries: string[]
 }

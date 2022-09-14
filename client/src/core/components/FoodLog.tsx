@@ -1,12 +1,14 @@
 import { FC, Fragment } from 'react'
-import { clearLog } from '../../features/entries/entriesSlice';
+import { clearLog } from '../../features/foodEntries/foodEntriesSlice';
+import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { useService } from '../contexts/ServiceProvider';
 import { TableLogRow } from './';
 
 const FoodLog: FC = () => {
     const { foodLogRouteService } = useService()
-    const { entries, user } = useAppSelector(state => state);
+    const user = useAppSelector(state => state.user);
+    const entries = useAppSelector(state => state.entries);
     const dispatch = useAppDispatch();
 
     const getTotalCalories = () => {
@@ -18,14 +20,16 @@ const FoodLog: FC = () => {
     }
 
     const submitLog = async () => {
-        const payloadEntries = entries.map((entry) => ({ foodId: entry._id, amount: entry.amount }));
+        const payloadEntries = entries.map((entry) => ({ food: entry._id, amount: entry.amount }));
         const payload = {
             entries: payloadEntries,
             userId: user._id,
         }
 
         await foodLogRouteService.post(payload);
-        dispatch(clearLog())
+        const logs = await foodLogRouteService.getTodayLogs(user._id);
+        dispatch(setTodayLogs(logs));
+        dispatch(clearLog());
     }
 
     return (
