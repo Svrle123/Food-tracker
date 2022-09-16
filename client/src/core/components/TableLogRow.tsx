@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { removeEntry } from '../../features/entries/entriesSlice'
+import { removeEntry } from '../../features/foodEntries/foodEntriesSlice'
 import { useAppDispatch } from '../../store/hooks'
 import { IFood } from '../interfaces'
 

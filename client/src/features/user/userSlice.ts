@@ -9,6 +9,7 @@ const initialState: IUser = {
     email: '',
     name: '',
     _id: '',
+    _v: 0,
 }
 
 export const userSlice = createSlice({

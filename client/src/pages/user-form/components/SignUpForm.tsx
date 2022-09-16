@@ -12,7 +12,7 @@ const initialState: ISignUpData = {
   isAdmin: false,
   email: '',
   name: '',
-  confirmPassword: ''
+  confirmPassword: '',
 };
 
 export const initialValidationState: ISignUpValidation = {

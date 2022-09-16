@@ -15,7 +15,7 @@ const selectedFood: IFood = {
 }
 
 const initialState: IFoodState = {
-    data: {
+    foodData: {
         data: [],
         currentPage: 0,
         totalPages: 0
@@ -24,11 +24,11 @@ const initialState: IFoodState = {
     selectedFood
 }
 export const foodSlice = createSlice({
-    name: 'foodData',
+    name: 'food',
     initialState,
     reducers: {
         setFood: (state, action: PayloadAction<IFoodResponse>) => {
-            return { ...state, data: { ...action.payload } };
+            return { ...state, foodData: { ...action.payload } };
         },
         setTypes: (state, action: PayloadAction<string[]>) => {
             return { ...state, foodTypes: [...action.payload] };

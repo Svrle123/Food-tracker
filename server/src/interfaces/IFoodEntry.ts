@@ -1,4 +1,6 @@
+import IFood from "./IFood";
+
 export default interface IFoodEntry {
-    foodId: string,
+    food: IFood,
     amount: number,
 }

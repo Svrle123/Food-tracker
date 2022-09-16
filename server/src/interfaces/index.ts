@@ -5,4 +5,5 @@ export { default as ISignInBody } from './ISignInBody';
 
 export { default as IFoodQuery } from './IFoodQuery';
 export { default as IFoodEntry } from './IFoodEntry';
+export { default as ILogTotal } from './ILogTotal';
 export { default as IFoodLog } from './IFoodLog';

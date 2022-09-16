@@ -1,4 +1,4 @@
-export default interface IEntries {
+export default interface IFoodEntry {
     amount: number,
     foodId: string,
 }

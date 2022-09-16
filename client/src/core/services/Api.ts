@@ -9,7 +9,7 @@ export default class Api {
     }
 
     get = async (params: IQueryParams) => {
-        const response = await axios.get(uritemplate.parse(this.baseUrl + `/{?searchQuery,type,page,rpp}`).expand(params));
+        const response: AxiosResponse = await axios.get(uritemplate.parse(this.baseUrl + `/{?searchQuery,type,page,rpp}`).expand(params));
         return response.data;
     }
 

@@ -5,8 +5,8 @@ import { findIndex } from 'lodash';
 
 const initialState: IFood[] = [];
 
-export const entriesSlice = createSlice({
-    name: 'entries',
+export const foodEntriesSlice = createSlice({
+    name: 'foodEntries',
     initialState,
     reducers: {
         addEntry: (state, action: PayloadAction<IFood>) => {
@@ -27,7 +27,7 @@ export const entriesSlice = createSlice({
     },
 })
 
-export const { addEntry, removeEntry, editEntry, clearLog } = entriesSlice.actions;
+export const { addEntry, removeEntry, editEntry, clearLog } = foodEntriesSlice.actions;
 
 
-export default entriesSlice.reducer;
+export default foodEntriesSlice.reducer;
