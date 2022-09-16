@@ -1,4 +1,5 @@
 import { FC, Fragment, useEffect } from 'react';
+import { upperFirst } from 'lodash';
 import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useService } from '../contexts/ServiceProvider';
@@ -25,7 +26,7 @@ const TodayLogs: FC = () => {
         }
         fetchLogs();
     }, [])
-    // TODO: Format entries array on Backend to be single object with all entires calculated
+
     return (
         <Fragment>
             <table>
@@ -36,6 +37,7 @@ const TodayLogs: FC = () => {
                                 <td>{"Today"}</td>
                             </tr>
                             <tr>
+                                <td className='empty__cell'></td>
                                 {todayLogs.map((log) => (
                                     <td key={log._id}>{moment(log.timeStamp).format('hh:mm:ss a')}</td>
                                 ))}
@@ -44,8 +46,13 @@ const TodayLogs: FC = () => {
                         <tbody>
                             {TABLE_ROWS.map((row) => (
                                 <tr>
+                                    <td>{upperFirst(row)}</td>
                                     {todayLogs.map((log) => (
-                                        <td></td>
+                                        <Fragment>
+                                            {log?.total &&
+                                                <td>{log.total[row]}</td>
+                                            }
+                                        </Fragment>
                                     ))}
                                 </tr>
                             ))}
