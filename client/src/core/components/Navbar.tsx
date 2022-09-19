@@ -5,6 +5,7 @@ import { logout } from '../../features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import logo from '../images/logo.png'
 import Button from './Button';
+import styles from './Navbar.module.css';
 
 const appVersion = packageInfo.version;
 
@@ -27,15 +28,15 @@ const Navbar: FC = () => {
     }
 
     return (
-        <header className='navbar'>
-            <div className='nav__logo'>
-                <img src={logo} alt='Logo' width='50' height='50' />
+        <header className={styles.navbar}>
+            <div className={styles.nav__logo}>
+                <img src={logo} alt='Logo' />
                 <figcaption className='app__version'>{'v' + appVersion}</figcaption>
             </div>
-            <ul className='nav__options'>
-                <li><Button className='nav__button' onClick={() => navigate('/home')} label='Home' /></li>
-                <li><Button className='nav__button' onClick={() => navigate('/summary')} label='Summary' /></li>
-                <li><Button className='nav__button' onClick={handleLogOut} label='Sign out' /></li>
+            <ul className={styles.nav__options}>
+                <li><Button className={styles.nav__button} onClick={() => navigate('/home')} label='Home' /></li>
+                <li><Button className={styles.nav__button} onClick={() => navigate('/summary')} label='Summary' /></li>
+                <li><Button className={styles.nav__button} onClick={() => handleLogOut()} label='Sign out' /></li>
             </ul>
         </header>
     );

@@ -1,0 +1,41 @@
+.grid__container {
+    overflow: hidden;
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100%;
+    grid-template-columns: repeat(2, 50%);
+    grid-template-rows: repeat(2, 50%);
+}
+
+.leftfull {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.righttop,
+.rightbottom {
+    grid-column: 2;
+}
+
+.righttop {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    grid-row: 1;
+}
+
+.righttop__left {
+    grid-column: 1;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.righttop__right {
+    grid-column: 2;
+}
+
+.rightbottom {
+    grid-row: 2;
+    margin-left: auto;
+    margin-right: auto;
+}

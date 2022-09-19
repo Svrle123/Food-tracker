@@ -4,6 +4,7 @@ import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useService } from '../contexts/ServiceProvider';
 import moment from 'moment';
+import styles from './TodayLog.module.css'
 
 const TABLE_ROWS: string[] = [
     "carbohydrates",
@@ -26,20 +27,20 @@ const TodayLogs: FC = () => {
         }
         fetchLogs();
     }, [])
-
     return (
         <Fragment>
-            <table>
+            <table className={styles.today__table}>
                 {todayLogs.length > 0 &&
                     <Fragment>
-                        <thead>
+                        <thead className={styles.today__header}>
                             <tr>
-                                <td>{"Today"}</td>
+                                <td></td>
+                                <th colSpan={5}>{"Today"}</th>
                             </tr>
                             <tr>
-                                <td className='empty__cell'></td>
+                                <td></td>
                                 {todayLogs.map((log) => (
-                                    <td key={log._id}>{moment(log.timeStamp).format('hh:mm:ss a')}</td>
+                                    <th key={log._id}>{moment(log.timeStamp).format('hh:mm:ss a')}</th>
                                 ))}
                             </tr>
                         </thead>
