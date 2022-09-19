@@ -1,10 +1,11 @@
 import { FC, Fragment, useEffect } from 'react'
 import { map } from 'lodash';
-import { IFoodResponse } from '../interfaces';
+import { IFoodResponse } from '../../interfaces';
 import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
-import { useService } from '../contexts/ServiceProvider';
-import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { setFood, setTypes } from '../../features/food/foodSlice';
+import { useService } from '../../contexts/ServiceProvider';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks';
+import { setFood, setTypes } from '../../../features/food/foodSlice';
+import styles from './Table.module.css';
 
 const Table: FC = () => {
     const { foodRouteService } = useService();
@@ -26,6 +27,7 @@ const Table: FC = () => {
             initDropdown();
         }
         fetchData();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         table.searchQuery,
         table.type,
@@ -37,14 +39,14 @@ const Table: FC = () => {
             {data.length > 0 &&
                 <Fragment>
                     <TableFilter dropdownData={foodTypes} />
-                    <table>
+                    <table className={styles.food__table}>
                         <TableHeader isSelected={false} />
                         <tbody>
                             {map(data, item => (
                                 <TableRow key={item.name} {...item} />
                             ))}
                         </tbody>
-                        <tfoot>
+                        <tfoot className={styles.table__footer}>
                             <TablePagination currentPage={currentPage} totalPages={totalPages} />
                         </tfoot>
                     </table>

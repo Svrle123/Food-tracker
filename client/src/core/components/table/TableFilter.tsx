@@ -1,8 +1,8 @@
 import { FC, Fragment, ChangeEvent } from 'react'
-import Dropdown from './Dropdown'
-import Input from './Input'
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { setParams } from '../../features/table/tableSlice'
+import Dropdown from '../Dropdown'
+import Input from '../Input'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks'
+import { setParams } from '../../../features/table/tableSlice'
 
 type IDropdownProps = {
     dropdownData: string[]

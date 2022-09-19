@@ -1,18 +1,26 @@
-import { FC, Fragment, } from 'react'
-import { Table, FoodEntry, FoodLog, TodayLogs } from '../../core/components';
+import { FC } from 'react'
+import { FoodEntry, FoodLog, TodayLogs } from '../../core/components';
+import { Table } from '../../core/components/table';
+import styles from './MainLayout.module.css';
 
 const MainLayout: FC = () => {
     return (
-        <Fragment>
-            <div className='food__table'>
+        <div className={styles.grid__container}>
+            <div className={`${styles.leftfull}`}>
                 <Table />
-                <FoodEntry />
-                <FoodLog />
             </div>
-            <div>
+            <div className={styles.righttop}>
+                <div className={styles.righttop__left}>
+                    <FoodEntry />
+                </div>
+                <div className={styles.righttop__right} >
+                    <FoodLog />
+                </div>
+            </div>
+            <div className={styles.rightbottom}>
                 <TodayLogs />
             </div>
-        </Fragment>
+        </div>
     )
 }
 

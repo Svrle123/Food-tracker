@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IFood } from '../interfaces'
+import { IFood } from '../../interfaces'
 
 const TableEntry: FC<IFood> = (food) => {
     return (

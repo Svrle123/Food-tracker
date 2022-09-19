@@ -1,7 +1,7 @@
 /**
- * 100X User error codes
+ * 1XXX User error codes
  * 
- * 200X Food error codes
+ * 2XXX Food error codes
  */
 const ERROR_CODES = {
     1000: "User with that username/email does't exist!",

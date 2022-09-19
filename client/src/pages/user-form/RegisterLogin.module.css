@@ -1,0 +1,34 @@
+.main__container {
+    height: 100%;
+    width: 50%;
+    position: fixed;
+    top: 0;
+    overflow-x: hidden;
+}
+
+.grid__container {
+    font-size: 30px;
+    text-align: center;
+}
+
+.container__center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.left {
+    left: 0;
+    background: linear-gradient(90deg, #c8cfcc, #D0F4EA, #A9C4C2)
+}
+
+.right {
+    right: 0;
+    background: linear-gradient(90deg, #A9C4C2, #829399, #6B7980, #545F66)
+}
+
+.heading {
+    margin-top: 5%;
+}

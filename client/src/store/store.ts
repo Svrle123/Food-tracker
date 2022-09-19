@@ -1,7 +1,6 @@
 import { configureStore, combineReducers, PayloadAction } from '@reduxjs/toolkit';
 import userReducer from '../features/user/userSlice';
 import foodReducer from '../features/food/foodSlice';
-import errorReducer from '../features/error/errorSlice';
 import tableReducer from '../features/table/tableSlice';
 import entriesReducer from '../features/foodEntries/foodEntriesSlice';
 import foodLogsReducer from '../features/foodLogs/foodLogsSlice';
@@ -9,7 +8,6 @@ import foodLogsReducer from '../features/foodLogs/foodLogsSlice';
 const combinedReducer = combineReducers({
     user: userReducer,
     food: foodReducer,
-    error: errorReducer,
     table: tableReducer,
     entries: entriesReducer,
     foodLogs: foodLogsReducer,

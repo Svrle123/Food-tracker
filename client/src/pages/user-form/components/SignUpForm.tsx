@@ -2,9 +2,10 @@ import { ChangeEvent, FC, FormEvent, useState } from 'react';
 import { Button, Input } from '../../../core/components';
 import { useService } from '../../../core/contexts/ServiceProvider';
 import { ISignUpData, IFormProps, ISignUpValidation, IResponseError } from '../../../core/interfaces';
-import { createDispatchError, validateRegisterForm } from '../../../core/utils';
-import { clearAndSetError } from '../../../features/error/errorSlice';
+import { handleServerMessage, validateRegisterForm } from '../../../core/utils';
 import { useAppDispatch } from '../../../store/hooks';
+
+import styles from './Form.module.css';
 
 const initialState: ISignUpData = {
   userName: '',
@@ -55,75 +56,100 @@ const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
     switch (error.errorCode) {
       case (1002):
         setValidation({ ...validation, isEmailInvalid: true });
-        dispatch(clearAndSetError(createDispatchError(error)));
+        handleServerMessage(error);
         break;
       case (1003):
         setValidation({ ...validation, isUserNameInvalid: true });
-        dispatch(clearAndSetError(createDispatchError(error)));
+        handleServerMessage(error);
         break;
     }
   }
 
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
+    <form className={styles.form__container} onSubmit={(e) => handleSubmit(e)}>
+      <label
+        className={styles.form__label}
+        htmlFor={"name"}
+      >
+        {"Enter first and last name:"}
+      </label>
       <Input
-        className={`user__form__input ${validation.isNameInvalid ? 'invalid' : ''}`}
+        className={`${styles.form__input} ${validation.isNameInvalid ? 'invalid' : ''}`}
         placeholder='Enter full name'
         onChange={(e) => handleInputChange(e)}
         required={true}
         value={formValues.name}
-        label='Full name'
         type='text'
         id='name'
       />
+      <label
+        className={styles.form__label}
+        htmlFor={"userName"}
+      >
+        {"Enter your username:"}
+      </label>
       <Input
-        className={`user__form__input ${validation.isUserNameInvalid ? 'invalid' : ''}`}
+        className={`${styles.form__input} ${validation.isUserNameInvalid ? 'invalid' : ''}`}
         placeholder='Enter username'
         onChange={(e) => handleInputChange(e)}
         required={true}
         value={formValues.userName}
-        label='Username'
         type='text'
         id='userName'
       />
+      <label
+        className={styles.form__label}
+        htmlFor={"email"}
+      >
+        {"Enter your email:"}
+      </label>
       <Input
-        className={`user__form__input ${validation.isEmailInvalid ? 'invalid' : ''}`}
+        className={`${styles.form__input} ${validation.isEmailInvalid ? 'invalid' : ''}`}
         placeholder='Enter email'
         onChange={(e) => handleInputChange(e)}
         required={true}
         value={formValues.email}
-        label='Email'
         type='text'
         id='email'
       />
+      <label
+        className={styles.form__label}
+        htmlFor={"password"}
+      >
+        {"Enter your password:"}
+      </label>
       <Input
-        className='user__form__input'
+        className={styles.form__input}
         placeholder='Enter password'
         onChange={(e) => handleInputChange(e)}
         required={true}
         value={formValues.password}
         type='password'
-        label='Password'
         id='password'
       />
+      <label
+        className={styles.form__label}
+        htmlFor={"confirmPassword"}
+      >
+        {"Confirm your password:"}
+      </label>
       <Input
-        className={`user__form__input ${validation.isPasswordInvalid ? 'invalid' : ''}`}
+        className={`${styles.form__input} ${validation.isPasswordInvalid ? 'invalid' : ''}`}
         placeholder='Confirm password'
         onChange={(e) => handleInputChange(e)}
         required={true}
         value={formValues.confirmPassword}
-        label='Confirm password'
         type='password'
         id='confirmPassword'
       />
       <Button
-        className='user__form__button'
+        className={styles.form__button}
         type='submit'
         label='Sign up'
       />
       <Button
-        className='user__form__button'
+        className={styles.form__button}
         onClick={(e) => changeForm(e)}
         label='Switch to Sign in'
       />
