@@ -20,7 +20,7 @@ export const createFoodLog = async (req: Request, res: Response): Promise<void> 
             foodEntries: logEntriesIds,
         });
 
-        newFoodLog.save();
+        await newFoodLog.save();
 
         res.status(201).json(newFoodLog);
     } catch (error) {

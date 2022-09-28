@@ -28,6 +28,7 @@ const FoodLog: FC = () => {
 
         await foodLogRouteService.post(payload);
         const logs = await foodLogRouteService.getTodayLogs(user._id);
+
         dispatch(setTodayLogs(logs));
         dispatch(clearLog());
     }
