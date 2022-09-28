@@ -34,9 +34,9 @@ const Navbar: FC = () => {
                 <figcaption className='app__version'>{'v' + appVersion}</figcaption>
             </div>
             <ul className={styles.nav__options}>
-                <li><Button className={styles.nav__button} onClick={() => navigate('/home')} label='Home' /></li>
-                <li><Button className={styles.nav__button} onClick={() => navigate('/summary')} label='Summary' /></li>
-                <li><Button className={styles.nav__button} onClick={() => handleLogOut()} label='Sign out' /></li>
+                <li><a className={styles.nav__button} onClick={() => navigate('/home')}>{"Home"}</a></li>
+                <li><a className={styles.nav__button} onClick={() => navigate('/summary')}>{"Summary"}</a></li>
+                <li><a className={styles.nav__button} onClick={() => handleLogOut()}>{"Sign out"} </a></li>
             </ul>
         </header>
     );
