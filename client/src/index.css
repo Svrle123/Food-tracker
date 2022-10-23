@@ -14,3 +14,7 @@ body {
 .invalid {
   border: 3px solid #d21111 !important;
 }
+
+svg>g>g.google-visualization-tooltip {
+  pointer-events: none
+}

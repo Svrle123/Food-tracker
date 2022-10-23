@@ -1,3 +1,4 @@
+import { startCase } from "lodash";
 import { IFood } from "../interfaces";
 
 export interface IPieChartData {
@@ -9,7 +10,6 @@ export interface IPieChartData {
 }
 
 export type PieChartField = [string, number | string]
-
 
 export default function createPieData(entries: IFood[]): PieChartField[] {
 
@@ -29,14 +29,14 @@ export default function createPieData(entries: IFood[]): PieChartField[] {
             calculatedTotal[key] += entry[key];
         })
     })
+
     const mappedData: PieChartField[] = [
         ["Food log", "Amount"],
     ]
-    Object.keys(calculatedTotal).map(field => {
-        mappedData.push([field, calculatedTotal[field]])
+
+    Object.keys(calculatedTotal).forEach(field => {
+        mappedData.push([startCase(field), calculatedTotal[field]])
     })
-
-
 
     return mappedData;
 }

@@ -1,4 +1,5 @@
 import { Schema, Document, model } from "mongoose";
+
 import { IFoodLog, ILogTotal } from "../interfaces";
 import FoodEntry from "./foodEntry";
 

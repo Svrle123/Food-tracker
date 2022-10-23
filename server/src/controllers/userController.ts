@@ -1,22 +1,23 @@
-import User, { IUserDocument } from "../models/user";
 import { Request, Response } from "express";
 import { HydratedDocument } from "mongoose";
+
+import User, { IUserDocument } from "../models/user";
 import { IUser, ISignInBody } from "../interfaces";
 import ERROR_CODES from "../error-codes";
 
 export const signUp = async (req: Request, res: Response) => {
     const userDetails: IUser = req.body;
 
-    const emailTaken: IUserDocument | null = await User.findOne<IUserDocument>({ email: userDetails.email });
-    const userNameTaken: IUserDocument | null = await User.findOne<IUserDocument>({ userName: userDetails.userName });
-
-    if (userNameTaken) {
-        return res.status(400).json({ message: ERROR_CODES[1003], errorCode: 1003 })
-    } else if (emailTaken) {
-        return res.status(400).json({ message: ERROR_CODES[1002], errorCode: 1002 })
-    }
-
     try {
+        const emailTaken: IUserDocument | null = await User.findOne<IUserDocument>({ email: { $regex: new RegExp(userDetails.email, "i") } });
+        const userNameTaken: IUserDocument | null = await User.findOne<IUserDocument>({ userName: { $regex: new RegExp(userDetails.userName, "i") } });
+
+        if (userNameTaken) {
+            return res.status(400).json({ message: ERROR_CODES[1003], errorCode: 1003 })
+        } else if (emailTaken) {
+            return res.status(400).json({ message: ERROR_CODES[1002], errorCode: 1002 })
+        }
+
         const newUser: HydratedDocument<IUserDocument> = new User<IUser>({ ...userDetails });
         await newUser.setPassword(userDetails.password);
         await newUser.save();
@@ -28,14 +29,16 @@ export const signUp = async (req: Request, res: Response) => {
 }
 
 export const signIn = async (req: Request, res: Response) => {
-    const { userNameOrEmail, password }: ISignInBody = req.body;
+    const { usernameOrEmail, password }: ISignInBody = req.body;
     let isValidUser: IUserDocument | null;
 
+    const caseInsensitiveUsernameOrEmail: RegExp = new RegExp(usernameOrEmail, "i");
+
     try {
-        if (userNameOrEmail.includes("@")) {
-            isValidUser = await User.findOne<IUserDocument>({ email: userNameOrEmail });
+        if (usernameOrEmail.includes("@")) {
+            isValidUser = await User.findOne<IUserDocument>({ email: { $regex: caseInsensitiveUsernameOrEmail } });
         } else {
-            isValidUser = await User.findOne<IUserDocument>({ userName: userNameOrEmail });
+            isValidUser = await User.findOne<IUserDocument>({ userName: { $regex: caseInsensitiveUsernameOrEmail } });
         }
 
         if (isValidUser == null) {

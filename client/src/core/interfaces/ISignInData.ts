@@ -1,4 +1,4 @@
 export default interface ISignInData {
-    userNameOrEmail: string,
+    usernameOrEmail: string,
     password: string
 }

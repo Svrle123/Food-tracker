@@ -1,4 +1,4 @@
 export default interface ISignInValidation {
-    isUserNameOrEmailInvalid: boolean,
+    isUsernameOrEmailInvalid: boolean,
     isPasswordInvalid: boolean,
 }

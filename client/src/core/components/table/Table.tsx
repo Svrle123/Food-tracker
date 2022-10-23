@@ -36,22 +36,22 @@ const Table: FC = () => {
     ])
     return (
         <Fragment>
-            {data.length > 0 &&
-                <Fragment>
-                    <TableFilter dropdownData={foodTypes} />
-                    <table className={styles.food__table}>
-                        <TableHeader isSelected={false} />
-                        <tbody>
+            <TableFilter dropdownData={foodTypes} />
+            <table className={styles.food__table}>
+                <TableHeader isSelected={false} />
+                <tbody>
+                    {data.length > 0 &&
+                        <Fragment>
                             {map(data, item => (
-                                <TableRow key={item.name} {...item} />
+                                <TableRow key={item._id} {...item} />
                             ))}
-                        </tbody>
-                        <tfoot className={styles.table__footer}>
-                            <TablePagination currentPage={currentPage} totalPages={totalPages} />
-                        </tfoot>
-                    </table>
-                </Fragment>
-            }
+                        </Fragment>
+                    }
+                </tbody>
+                <tfoot className={styles.table__footer}>
+                    <TablePagination currentPage={currentPage} totalPages={totalPages} />
+                </tfoot>
+            </table>
         </Fragment>
     )
 }

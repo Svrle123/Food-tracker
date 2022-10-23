@@ -1,4 +1,5 @@
 import { FC, Fragment } from 'react'
+import { toast } from 'react-toastify';
 import { clearLog } from '../../features/foodEntries/foodEntriesSlice';
 import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
@@ -20,6 +21,11 @@ const FoodLog: FC = () => {
     }
 
     const submitLog = async () => {
+        if (entries.length < 1) {
+            toast.warning("Food log cannot be empty!")
+            return;
+        }
+
         const payloadEntries = entries.map((entry) => ({ food: entry._id, amount: entry.amount }));
         const payload = {
             entries: payloadEntries,
@@ -35,11 +41,14 @@ const FoodLog: FC = () => {
 
     return (
         <Fragment>
-            <table>
+            <table style={{ height: "400px" }}>
                 <thead>
                     <tr>
-                        <td>{"Current food log"}</td>
-                        <td colSpan={2} onClick={() => dispatch(clearLog())}>{"Clear"}</td>
+                        <td >{"Current food log"}</td>
+                        <td >{"Amount"}</td>
+                        <td onClick={() => dispatch(clearLog())}>
+                            {"Clear"}
+                        </td>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,7 +62,7 @@ const FoodLog: FC = () => {
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td>{"Calories total:"}</td>
+                        <td>{"Calories total"}</td>
                         <td colSpan={2}>{getTotalCalories()}</td>
                     </tr>
                     <tr>
@@ -63,7 +72,7 @@ const FoodLog: FC = () => {
                     </tr>
                 </tfoot>
             </table>
-        </Fragment>
+        </Fragment >
     )
 }
 

@@ -20,7 +20,7 @@ const RegisterLogin: FC = () => {
                             <h1>FOOD TRACKER</h1>
                         </div>
                         <div className={styles.container__center}>
-                            <img src={logo} />
+                            <img src={logo} alt="" />
                         </div>
                     </div>
                     <div className={`${styles.main__container} ${styles.right}`}>

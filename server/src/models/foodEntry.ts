@@ -1,11 +1,15 @@
-import { Schema, model } from "mongoose";
+import { Schema, Document, model } from "mongoose";
+
 import { IFoodEntry } from "../interfaces";
 
-const foodEntrySchema = new Schema<IFoodEntry>(
+export interface IFoodEntryDocument extends IFoodEntry, Document {
+}
+
+const foodEntrySchema = new Schema<IFoodEntryDocument>(
     {
         food: { type: Schema.Types.ObjectId, ref: "Food" },
         amount: Number
     }
 );
 
-export default model<IFoodEntry>('FoodEntry', foodEntrySchema);
+export default model<IFoodEntryDocument>('FoodEntry', foodEntrySchema);

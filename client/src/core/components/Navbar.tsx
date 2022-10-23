@@ -4,7 +4,6 @@ import { Location, useLocation, useNavigate } from 'react-router';
 import { logout } from '../../features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import logo from '../images/logo.png'
-import Button from './Button';
 import styles from './Navbar.module.css';
 
 const appVersion = packageInfo.version;
@@ -34,9 +33,9 @@ const Navbar: FC = () => {
                 <figcaption className='app__version'>{'v' + appVersion}</figcaption>
             </div>
             <ul className={styles.nav__options}>
-                <li><a className={styles.nav__button} onClick={() => navigate('/home')}>{"Home"}</a></li>
-                <li><a className={styles.nav__button} onClick={() => navigate('/summary')}>{"Summary"}</a></li>
-                <li><a className={styles.nav__button} onClick={() => handleLogOut()}>{"Sign out"} </a></li>
+                <li><div className={styles.nav__button} onClick={() => navigate('/home')}>{"Home"}</div></li>
+                <li><div className={styles.nav__button} onClick={() => navigate('/summary')}>{"Summary"}</div></li>
+                <li><div className={styles.nav__button} onClick={() => handleLogOut()}>{"Sign out"} </div></li>
             </ul>
         </header>
     );

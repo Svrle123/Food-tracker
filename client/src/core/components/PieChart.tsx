@@ -27,10 +27,15 @@ const PieChart: FC = () => {
             options={{
                 backgroundColor: "#A9C4C2",
                 is3D: true,
-                legend: 'none',
-                colors: ['#545F66', '#6B7980', '#829399', '#929da1']
+                legend: {
+                    position: 'top',
+                    alignment: 'start',
+                    maxLines: 2,
+                    textStyle: { fontSize: 15 }
+                },
+                colors: ['#d1ae2b', '#b38849', '#d8a35c', '#636466'],
             }}
-            width={"350x"}
+            width={"350px"}
             height={"350px"}
         />
     )

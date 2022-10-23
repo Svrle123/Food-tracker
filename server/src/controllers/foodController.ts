@@ -1,6 +1,7 @@
-import Food from "../models/food";
 import { Request, Response } from 'express';
 import { HydratedDocument } from 'mongoose';
+
+import Food, { IFoodDocument } from "../models/food";
 import { IFood, IFoodQuery } from '../interfaces';
 import { constructFoodFilter } from "../utils";
 
@@ -9,7 +10,7 @@ export const createFood = async (req: Request, res: Response) => {
     const adminId: string = req.params.adminId;
 
     try {
-        const newFood: HydratedDocument<IFood> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date() })
+        const newFood: HydratedDocument<IFoodDocument> = new Food<IFood>({ ...food, creator: adminId, createdAt: new Date() })
         await newFood.save();
 
         res.status(201).json(newFood);
@@ -22,16 +23,16 @@ export const getFood = async (req: Request, res: Response) => {
     const { searchQuery = "", type = "", rpp = 10, page = 1 }: IFoodQuery = req.query;
 
     const name: RegExp = new RegExp(searchQuery, "i");
-    let food: IFood[];
-    let count: number = 1;
+    let food: IFoodDocument[];
+    let count = 1;
 
     const filter = constructFoodFilter(type, searchQuery ? name : null);
 
     if (type || searchQuery) {
-        food = await Food.find<IFood>({ ...filter }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+        food = await Food.find<IFoodDocument>({ ...filter }).limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
         count = await Food.find({ type: type, name: name }).countDocuments();
     } else {
-        food = await Food.find<IFood>().limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
+        food = await Food.find<IFoodDocument>().limit(rpp).skip((page - 1) * rpp).sort({ name: 1 }).exec();
         count = await Food.countDocuments();
     }
 

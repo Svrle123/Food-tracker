@@ -1,5 +1,6 @@
 import { Request, Response } from "express"
 import { HydratedDocument } from "mongoose";
+
 import { IFoodEntry, IFoodLog } from "../interfaces";
 import { createEntries } from "./foodEntryController";
 import FoodLog, { IFoodLogDocument } from "../models/foodLog";
@@ -40,6 +41,7 @@ export const getTodaysLogs = async (req: Request, res: Response): Promise<void> 
         const logsWithTotal = await Promise.all(promises).then((result) => {
             return Object(result);
         });
+
         res.status(200).json(logsWithTotal);
     } catch (error) {
         res.status(500).json(error)

@@ -1,5 +1,5 @@
 import FoodEntry from "../models/foodEntry";
-import { IFoodEntry, IFoodLog } from "../interfaces";
+import { IFoodEntry } from "../interfaces";
 
 export const createEntries = async (entries: IFoodEntry[]) => {
     const newEntries = await FoodEntry.insertMany(entries);

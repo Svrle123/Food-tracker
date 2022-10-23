@@ -26,6 +26,7 @@ const TodayLogs: FC = () => {
             dispatch(setTodayLogs(logs))
         }
         fetchLogs();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
@@ -47,13 +48,11 @@ const TodayLogs: FC = () => {
                     <tbody>
                         {TABLE_ROWS.map((row, idx) => (
                             <tr key={row}>
-                                <td key={idx}>{upperFirst(row)}</td>
-                                {todayLogs.map((log, idx) => (
-                                    <Fragment>
-                                        {log?.total &&
-                                            <td key={idx}>{log.total[row]}</td>
-                                        }
-                                    </Fragment>
+                                <td key={idx + row}>{upperFirst(row)}</td>
+                                {todayLogs.map((log) => (
+                                    <td key={log._id + row}>
+                                        {(log?.total && log.total[row]) || 0}
+                                    </td>
                                 ))}
                             </tr>
                         ))}

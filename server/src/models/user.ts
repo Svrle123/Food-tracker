@@ -1,6 +1,7 @@
 import { Schema, Document, model } from "mongoose";
-import { IUser } from "../interfaces";
 import bcrypt from 'bcrypt';
+
+import { IUser } from "../interfaces";
 
 export interface IUserDocument extends IUser, Document {
     setPassword: (password: string) => Promise<void>;

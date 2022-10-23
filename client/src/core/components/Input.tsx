@@ -1,4 +1,4 @@
-import { FC, Fragment } from 'react'
+import { FC } from 'react'
 import { IInputProps } from '../interfaces'
 
 const Input: FC<IInputProps> = ({ className, placeholder, onChange, value, type, id, ref, required }) => {

@@ -1,7 +1,11 @@
-import { Schema, model } from "mongoose";
+import { Schema, Document, model } from "mongoose";
+
 import { IFood } from "../interfaces";
 
-const foodSchema = new Schema<IFood>(
+export interface IFoodDocument extends IFood, Document {
+}
+
+const foodSchema = new Schema<IFoodDocument>(
     {
         name: String,
         type: String,
@@ -15,4 +19,4 @@ const foodSchema = new Schema<IFood>(
     }
 );
 
-export default model<IFood>('Food', foodSchema);
+export default model<IFoodDocument>('Food', foodSchema);

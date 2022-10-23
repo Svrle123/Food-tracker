@@ -6,6 +6,7 @@ import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { IFood } from "../interfaces";
 import { calculateSelectedFood } from "../utils";
 import { TableEntry, TableHeader } from "./table";
+import { toast } from 'react-toastify';
 
 const calculatedInitialState: IFood = {
     name: "",
@@ -36,7 +37,7 @@ const FoodEntry: FC = () => {
     }, [amount, selected])
 
     const handleAmountChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (!event.currentTarget.value) {
+        if (isNaN(parseInt(event.currentTarget.value))) {
             setAmount(0);
             return;
         }
@@ -48,7 +49,12 @@ const FoodEntry: FC = () => {
     }
 
     const handleSubmitSelected = () => {
+        if (!calculated._id) {
+            toast.info("Please select a food first!")
+            return;
+        }
         dispatch(addEntry({ ...calculated, amount }));
+        dispatch(removeSelected());
     }
 
     return (
@@ -60,7 +66,6 @@ const FoodEntry: FC = () => {
                     placeholder="Amount in grams"
                     onChange={(e) => handleAmountChange(e)}
                     value={amount}
-                    label="Amount"
                     type="text"
                     id="amount"
                 />

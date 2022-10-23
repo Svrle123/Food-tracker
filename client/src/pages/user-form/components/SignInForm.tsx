@@ -11,12 +11,12 @@ import { handleServerMessage } from '../../../core/utils';
 import styles from './Form.module.css';
 
 const initialFormState: ISignInData = {
-    userNameOrEmail: '',
+    usernameOrEmail: '',
     password: '',
 }
 
 const initialValidationState: ISignInValidation = {
-    isUserNameOrEmailInvalid: false,
+    isUsernameOrEmailInvalid: false,
     isPasswordInvalid: false,
 }
 
@@ -47,7 +47,7 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
     const formErrorHandler = (error: IResponseError): void => {
         switch (error.errorCode) {
             case (1000):
-                setValidation({ ...validation, isUserNameOrEmailInvalid: true });
+                setValidation({ ...validation, isUsernameOrEmailInvalid: true });
                 handleServerMessage(error);
                 break;
             case (1001):
@@ -61,18 +61,18 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
         <form className={styles.form__container} onSubmit={(e) => handleSubmit(e)}>
             <label
                 className={styles.form__label}
-                htmlFor={"userNameOrEmail"}
+                htmlFor={"usernameOrEmail"}
             >
                 {"Enter your username or email:"}
             </label>
             <Input
-                className={`${styles.form__input} ${validation.isUserNameOrEmailInvalid ? 'invalid' : ''}`}
+                className={`${styles.form__input} ${validation.isUsernameOrEmailInvalid ? 'invalid' : ''}`}
                 placeholder='Username / Email'
                 onChange={handleInputChange}
-                value={userData.userNameOrEmail}
+                value={userData.usernameOrEmail}
                 required={true}
                 type='text'
-                id='userNameOrEmail'
+                id='usernameOrEmail'
             />
             <label
                 className={styles.form__label}
