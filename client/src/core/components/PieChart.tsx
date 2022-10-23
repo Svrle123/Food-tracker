@@ -19,7 +19,7 @@ const PieChart: FC = () => {
         const chartData = createPieData(entries);
         setPieData(chartData);
     }, [entries])
-    debugger
+
     return (
         <Chart
             chartType="PieChart"
