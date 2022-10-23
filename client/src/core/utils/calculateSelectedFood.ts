@@ -6,7 +6,7 @@ const calculateSelectedFood = (selected: IFood, amount: number) => {
     }
 
     const decimal = (amount / 100);
-    let recalculated: any = { ...selected };
+    let recalculated = { ...selected };
 
     for (let key in recalculated) {
         if (typeof recalculated[key] == 'number') {

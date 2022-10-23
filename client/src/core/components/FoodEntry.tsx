@@ -1,10 +1,11 @@
 import { ChangeEvent, FC, Fragment, useEffect, useState } from "react"
-import { Input, Button, TableEntry, TableHeader } from ".";
+import { Input, Button } from "./";
 import { addEntry } from "../../features/foodEntries/foodEntriesSlice";
 import { removeSelected } from "../../features/food/foodSlice";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { IFood } from "../interfaces";
 import { calculateSelectedFood } from "../utils";
+import { TableEntry, TableHeader } from "./table";
 
 const calculatedInitialState: IFood = {
     name: "",
@@ -52,35 +53,33 @@ const FoodEntry: FC = () => {
 
     return (
         <Fragment>
-            {selected?._id &&
-                <div>
-                    <h3>{selected?.name}</h3>
-                    <Input
-                        className="amount__input"
-                        placeholder="Amount in grams"
-                        onChange={(e) => handleAmountChange(e)}
-                        value={amount}
-                        label="Amount"
-                        type="text"
-                        id="amount"
-                    />
-                    <Button
-                        onClick={() => handleSubmitSelected()}
-                        className={""}
-                        label={"Add to log"}
-                    />
-                    <Button
-                        onClick={() => handleCancelSelect()}
-                        className={""}
-                        label={"X"} />
-                    <table>
-                        <TableHeader isSelected={true} />
-                        <tbody>
-                            <TableEntry {...calculated} />
-                        </tbody>
-                    </table>
-                </div>
-            }
+            <div>
+                <h3>{selected?.name || "Select a food"}</h3>
+                <Input
+                    className="amount__input"
+                    placeholder="Amount in grams"
+                    onChange={(e) => handleAmountChange(e)}
+                    value={amount}
+                    label="Amount"
+                    type="text"
+                    id="amount"
+                />
+                <Button
+                    onClick={() => handleSubmitSelected()}
+                    className={""}
+                    label={"Add to log"}
+                />
+                <Button
+                    onClick={() => handleCancelSelect()}
+                    className={""}
+                    label={"X"} />
+                <table>
+                    <TableHeader isSelected={true} />
+                    <tbody>
+                        <TableEntry {...calculated} />
+                    </tbody>
+                </table>
+            </div>
         </Fragment>
     )
 }

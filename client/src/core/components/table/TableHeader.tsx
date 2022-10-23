@@ -24,7 +24,7 @@ const TableHeader: FC<{ isSelected: boolean }> = ({ isSelected }) => {
         <thead>
             <tr>
                 {map(isSelected ? selectedHeaders : defaultHeaders, header => (
-                    <td key={header}>{header}</td>
+                    <th key={header}>{header}</th>
                 ))}
             </tr>
         </thead>

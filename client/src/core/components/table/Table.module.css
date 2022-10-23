@@ -1,0 +1,47 @@
+.food__table {
+    height: 75vh;
+    width: 100%;
+    text-align: center;
+}
+
+.food__table td:first-child {
+    text-align: left;
+}
+
+.food__table,
+tr,
+th,
+td {
+    border: 1px solid #545F66 !important;
+    border-collapse: collapse;
+    font-size: large;
+}
+
+.food__table thead {
+    background-color: #545F66;
+}
+
+.food__table th {
+    text-transform: uppercase;
+    width: fit-content;
+
+}
+
+.food__table tr {
+    height: 10px;
+}
+
+.food__table tbody tr:nth-child(even) {
+    background-color: #829399;
+}
+
+.food__table tbody tr:nth-child(odd) {
+    background-color: #A9C4C2;
+}
+
+.table__footer ul {
+    display: flex;
+    justify-content: space-around;
+    column-width: 100%;
+    list-style-type: none;
+}

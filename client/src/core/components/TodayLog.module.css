@@ -1,0 +1,10 @@
+.today__table {
+    empty-cells: hide;
+    border-collapse: separate;
+    text-align: center;
+}
+
+
+.today__header th {
+    background-color: #545F66;
+}

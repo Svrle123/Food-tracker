@@ -1,7 +1,7 @@
 import { FC } from 'react'
-import { removeEntry } from '../../features/foodEntries/foodEntriesSlice'
-import { useAppDispatch } from '../../store/hooks'
-import { IFood } from '../interfaces'
+import { removeEntry } from '../../../features/foodEntries/foodEntriesSlice'
+import { useAppDispatch } from '../../../store/hooks'
+import { IFood } from '../../interfaces'
 
 const TableLogRow: FC<IFood> = (food) => {
     const dispatch = useAppDispatch()

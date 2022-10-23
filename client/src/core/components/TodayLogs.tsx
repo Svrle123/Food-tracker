@@ -4,6 +4,7 @@ import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { useService } from '../contexts/ServiceProvider';
 import moment from 'moment';
+import styles from './TodayLog.module.css'
 
 const TABLE_ROWS: string[] = [
     "carbohydrates",
@@ -28,39 +29,38 @@ const TodayLogs: FC = () => {
     }, [])
 
     return (
-        <Fragment>
-            <table>
-                {todayLogs.length > 0 &&
-                    <Fragment>
-                        <thead>
-                            <tr>
-                                <td>{"Today"}</td>
-                            </tr>
-                            <tr>
-                                <td className='empty__cell'></td>
-                                {todayLogs.map((log) => (
-                                    <td key={log._id}>{moment(log.timeStamp).format('hh:mm:ss a')}</td>
+        <table className={styles.today__table}>
+            {todayLogs.length > 0 &&
+                <Fragment>
+                    <thead className={styles.today__header}>
+                        <tr>
+                            <td></td>
+                            <th colSpan={5}>{"Today"}</th>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            {todayLogs.map((log) => (
+                                <th key={log._id}>{moment(log.timeStamp).format('hh:mm:ss a')}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {TABLE_ROWS.map((row, idx) => (
+                            <tr key={row}>
+                                <td key={idx}>{upperFirst(row)}</td>
+                                {todayLogs.map((log, idx) => (
+                                    <Fragment>
+                                        {log?.total &&
+                                            <td key={idx}>{log.total[row]}</td>
+                                        }
+                                    </Fragment>
                                 ))}
                             </tr>
-                        </thead>
-                        <tbody>
-                            {TABLE_ROWS.map((row) => (
-                                <tr>
-                                    <td>{upperFirst(row)}</td>
-                                    {todayLogs.map((log) => (
-                                        <Fragment>
-                                            {log?.total &&
-                                                <td>{log.total[row]}</td>
-                                            }
-                                        </Fragment>
-                                    ))}
-                                </tr>
-                            ))}
-                        </tbody>
-                    </Fragment>
-                }
-            </table>
-        </Fragment>
+                        ))}
+                    </tbody>
+                </Fragment>
+            }
+        </table>
     )
 }
 

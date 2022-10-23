@@ -2,12 +2,13 @@ import { ChangeEvent, FC, FormEvent, useState } from 'react'
 import { Button, Input } from '../../../core/components';
 import { useAppDispatch } from '../../../store/hooks';
 import { login } from '../../../features/user/userSlice';
-import { clearAndSetError } from '../../../features/error/errorSlice';
 
 import { useService } from '../../../core/contexts/ServiceProvider';
 import { ISignInData, IFormProps, IResponseError, ISignInValidation } from '../../../core/interfaces';
 import { useNavigate } from 'react-router';
-import { createDispatchError } from '../../../core/utils';
+import { handleServerMessage } from '../../../core/utils';
+
+import styles from './Form.module.css';
 
 const initialFormState: ISignInData = {
     userNameOrEmail: '',
@@ -47,42 +48,54 @@ const SignInForm: FC<IFormProps> = ({ changeForm }) => {
         switch (error.errorCode) {
             case (1000):
                 setValidation({ ...validation, isUserNameOrEmailInvalid: true });
-                dispatch(clearAndSetError(createDispatchError(error)));
+                handleServerMessage(error);
                 break;
             case (1001):
                 setValidation({ ...validation, isPasswordInvalid: true });
-                dispatch(clearAndSetError(createDispatchError(error)));
+                handleServerMessage(error);
                 break;
         }
     }
 
     return (
-        <form onSubmit={(e) => handleSubmit(e)}>
+        <form className={styles.form__container} onSubmit={(e) => handleSubmit(e)}>
+            <label
+                className={styles.form__label}
+                htmlFor={"userNameOrEmail"}
+            >
+                {"Enter your username or email:"}
+            </label>
             <Input
-                className={`user__form__input ${validation.isUserNameOrEmailInvalid ? 'invalid' : ''}`}
+                className={`${styles.form__input} ${validation.isUserNameOrEmailInvalid ? 'invalid' : ''}`}
                 placeholder='Username / Email'
                 onChange={handleInputChange}
                 value={userData.userNameOrEmail}
-                label='Enter your username or email:'
+                required={true}
                 type='text'
                 id='userNameOrEmail'
             />
+            <label
+                className={styles.form__label}
+                htmlFor={"password"}
+            >
+                {"Enter your password:"}
+            </label>
             <Input
-                className={`user__form__input ${validation.isPasswordInvalid ? 'invalid' : ''}`}
+                className={`${styles.form__input} ${validation.isPasswordInvalid ? 'invalid' : ''}`}
                 placeholder='Password'
                 onChange={handleInputChange}
                 value={userData.password}
-                label='Enter your password:'
+                required={true}
                 type='password'
                 id='password'
             />
             <Button
-                className='user__form__button'
+                className={styles.form__button}
                 type='submit'
                 label='Sign in'
             />
             <Button
-                className='user__form__button'
+                className={styles.form__button}
                 onClick={(e) => changeForm(e)}
                 label='Switch to Sign up' />
         </form>
