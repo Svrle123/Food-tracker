@@ -4,7 +4,7 @@ import { useAppDispatch } from '../../../store/hooks';
 import { IFood } from '../../interfaces'
 
 const TableRow: FC<IFood> = (props) => {
-    const { name, type, calories, carbohydrates, fat, protein, fiber } = props;
+    const { name, calories, carbohydrates, fat, protein, fiber } = props;
     const dispatch = useAppDispatch();
 
     const handleSelect = () => {
@@ -14,7 +14,6 @@ const TableRow: FC<IFood> = (props) => {
     return (
         <tr onMouseDown={() => handleSelect()}>
             <td>{name}</td>
-            <td>{type}</td>
             <td>{calories}</td>
             <td>{carbohydrates}</td>
             <td>{fat}</td>

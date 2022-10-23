@@ -10,7 +10,6 @@ import { toast } from 'react-toastify';
 
 const calculatedInitialState: IFood = {
     name: "",
-    type: "",
     _id: "",
     __v: "",
     calories: 0,

@@ -8,7 +8,6 @@ export interface IFoodDocument extends IFood, Document {
 const foodSchema = new Schema<IFoodDocument>(
     {
         name: String,
-        type: String,
         calories: Number,
         carbohydrates: Number,
         fat: Number,

@@ -3,7 +3,6 @@ import { map } from 'lodash';
 
 const defaultHeaders = {
     name: "Name",
-    type: "Type",
     calories: "Calories",
     carbohydrates: "Carbohydrates",
     fat: "Fat",

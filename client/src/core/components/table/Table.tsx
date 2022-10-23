@@ -4,13 +4,13 @@ import { IFoodResponse } from '../../interfaces';
 import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
 import { useService } from '../../contexts/ServiceProvider';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { setFood, setTypes } from '../../../features/food/foodSlice';
+import { setFood } from '../../../features/food/foodSlice';
 import styles from './Table.module.css';
 
 const Table: FC = () => {
     const { foodRouteService } = useService();
     const table = useAppSelector(state => state.table);
-    const { foodTypes, foodData: { data, currentPage, totalPages } } = useAppSelector(state => state.food);
+    const { foodData: { data, currentPage, totalPages } } = useAppSelector(state => state.food);
 
     const dispatch = useAppDispatch();
 
@@ -18,13 +18,6 @@ const Table: FC = () => {
         const fetchData = async () => {
             const response: IFoodResponse = await foodRouteService.get({ ...table });
             dispatch(setFood(response));
-        }
-        const initDropdown = async () => {
-            const response = await foodRouteService.getTypes()
-            dispatch(setTypes(response));
-        }
-        if (foodTypes.length === 0) {
-            initDropdown();
         }
         fetchData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -36,7 +29,7 @@ const Table: FC = () => {
     ])
     return (
         <Fragment>
-            <TableFilter dropdownData={foodTypes} />
+            <TableFilter />
             <table className={styles.food__table}>
                 <TableHeader isSelected={false} />
                 <tbody>

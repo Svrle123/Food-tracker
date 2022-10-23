@@ -4,7 +4,6 @@ import { IFood, IFoodResponse, IFoodState } from '../../core/interfaces';
 
 const selectedFood: IFood = {
     name: "",
-    type: "",
     _id: "",
     __v: "",
     calories: 0,
@@ -20,7 +19,6 @@ const initialState: IFoodState = {
         currentPage: 0,
         totalPages: 0
     },
-    foodTypes: [],
     selectedFood
 }
 export const foodSlice = createSlice({
@@ -29,9 +27,6 @@ export const foodSlice = createSlice({
     reducers: {
         setFood: (state, action: PayloadAction<IFoodResponse>) => {
             return { ...state, foodData: { ...action.payload } };
-        },
-        setTypes: (state, action: PayloadAction<string[]>) => {
-            return { ...state, foodTypes: [...action.payload] };
         },
         setSelected: (state, action: PayloadAction<IFood>) => {
             return { ...state, selectedFood: action.payload };
@@ -42,6 +37,6 @@ export const foodSlice = createSlice({
     },
 })
 
-export const { setFood, setTypes, setSelected, removeSelected } = foodSlice.actions;
+export const { setFood, setSelected, removeSelected } = foodSlice.actions;
 
 export default foodSlice.reducer;
