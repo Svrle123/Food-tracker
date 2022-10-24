@@ -5,8 +5,20 @@ const calculateSelectedFood = (selected: IFood, amount: number) => {
         return selected;
     }
 
-    const decimal = (amount / 100);
     let recalculated = { ...selected };
+
+    if (selected.amount !== 100) {
+        const multiplier = 1 / ((selected.amount || 100) / 100);
+
+        for (let key in recalculated) {
+            if (typeof selected[key] == 'number') {
+                recalculated[key] *= multiplier;
+                recalculated[key] = Number(recalculated[key].toFixed(2));
+            }
+        }
+    }
+
+    const decimal = (amount / 100);
 
     for (let key in recalculated) {
         if (typeof recalculated[key] == 'number') {

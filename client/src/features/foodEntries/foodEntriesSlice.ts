@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { IFood } from '../../core/interfaces';
 import { findIndex } from 'lodash';
+import { calculateSelectedFood } from '../../core/utils';
 
 const initialState: IFood[] = [];
 
@@ -18,8 +19,8 @@ export const foodEntriesSlice = createSlice({
         },
         editEntry: (state, action: PayloadAction<{ amount: number, _id: string }>) => {
             const index = findIndex(state, (entry) => entry._id === action.payload._id);
-            const itemToUpdate = { ...state[index], amount: action.payload.amount };
-            state.splice(index, 1, itemToUpdate);
+            const reCalculatedFood = calculateSelectedFood(state[index], action.payload.amount);
+            state.splice(index, 1, { ...reCalculatedFood });
         },
         clearLog: (state) => {
             state.splice(0, state.length);
