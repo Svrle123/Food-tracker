@@ -6,7 +6,7 @@ const initialState: IQueryParams = {
     searchQuery: '',
     type: '',
     page: 1,
-    rpp: 15,
+    rpp: 10,
 }
 
 export const tableSlice = createSlice({

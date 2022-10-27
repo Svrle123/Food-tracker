@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import { map } from 'lodash';
 
+import { TableHead, TableRow, TableCell } from '@mui/material';
+
 const defaultHeaders = {
     name: "Name",
     calories: "Calories",
@@ -20,13 +22,20 @@ const selectedHeaders = {
 
 const TableHeader: FC<{ isSelected: boolean }> = ({ isSelected }) => {
     return (
-        <thead>
-            <tr>
+        <TableHead>
+            <TableRow>
                 {map(isSelected ? selectedHeaders : defaultHeaders, header => (
-                    <th key={header}>{header}</th>
+                    <>
+                        {
+                            header == "Name" ?
+                                <TableCell align={"left"} padding={"normal"} key={header}><strong>{`${header} (100g)`}</strong></TableCell>
+                                :
+                                <TableCell align={"center"} padding={"normal"} key={header}><strong>{header}</strong></TableCell>
+                        }
+                    </>
                 ))}
-            </tr>
-        </thead>
+            </TableRow>
+        </TableHead>
     )
 }
 

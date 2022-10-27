@@ -7,8 +7,15 @@ import { Navbar, NotFound } from './core/components';
 import { MainLayout } from './pages/home';
 import { login } from './features/user/userSlice';
 
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+});
 
 const App: FC = () => {
   const user = useAppSelector(state => state.user);
@@ -21,30 +28,32 @@ const App: FC = () => {
 
   return (
     <>
-      <ServiceProvider>
-        <Router>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={!user._id ? <RegisterLogin /> : <MainLayout />} />
-            {user?._id && (
-              <Route path='/home' element={<MainLayout />} />
-            )}
-            <Route path='*' element={<NotFound />} />
-          </Routes>
-        </Router>
-      </ServiceProvider>
-      <ToastContainer
-        theme='dark'
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
+      <ThemeProvider theme={darkTheme}>
+        <ServiceProvider>
+          <Router>
+            <Navbar />
+            <Routes>
+              <Route path='/' element={!user._id ? <RegisterLogin /> : <MainLayout />} />
+              {user?._id && (
+                <Route path='/home' element={<MainLayout />} />
+              )}
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Router>
+        </ServiceProvider>
+        <ToastContainer
+          theme='dark'
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </ThemeProvider>
     </>
   );
 }

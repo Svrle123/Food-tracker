@@ -2,18 +2,21 @@ import { FC, ChangeEvent, useState } from 'react';
 import { removeEntry, editEntry } from '../../../features/foodEntries/foodEntriesSlice';
 import { useAppDispatch } from '../../../store/hooks';
 import { IFood } from '../../interfaces';
-import { Button, Input } from '../';
+import { Input } from '../';
 
 const TableLogRow: FC<IFood> = (food) => {
-    const [amount, setAmount] = useState(food.amount || 0)
+    const [amount, setAmount] = useState(food.amount || 1)
     const dispatch = useAppDispatch()
 
     const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
-        if (isNaN(parseInt(event.currentTarget.value))) {
-            setAmount(0);
+        const newValue = parseInt(event.currentTarget.value);
+        if (isNaN(newValue) || newValue === 0) {
+            setAmount(1);
+            dispatch(editEntry({ _id: food._id, amount: 1 }));
             return;
         }
-        setAmount(parseInt(event.currentTarget.value));
+        setAmount(newValue);
+        dispatch(editEntry({ _id: food._id, amount: newValue }));
     }
 
     return (
@@ -26,11 +29,6 @@ const TableLogRow: FC<IFood> = (food) => {
                     value={amount}
                     type={"text"}
                     id={'amount'}
-                />
-                <Button
-                    className={''}
-                    label={'X'}
-                    onClick={() => { dispatch(editEntry({ _id: food._id, amount })) }}
                 />
             </td>
             <td onClick={() => dispatch(removeEntry(food._id))}>{"X"}</td>

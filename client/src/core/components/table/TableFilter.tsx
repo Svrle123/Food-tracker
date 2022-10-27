@@ -3,7 +3,6 @@ import { Input } from '../'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks'
 import { setParams } from '../../../features/table/tableSlice'
 
-
 const TableFilter: FC = () => {
     const tableParams = useAppSelector(state => state.table);
     const dispatch = useAppDispatch();

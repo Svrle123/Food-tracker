@@ -3,26 +3,28 @@ import { setParams } from '../../../features/table/tableSlice';
 import { useAppDispatch, useAppSelector } from '../../../store/hooks';
 import { ITablePaginationProps } from '../../interfaces';
 
-const TablePagination: FC<ITablePaginationProps> = ({ currentPage, totalPages }) => {
+import { Pagination, PaginationItem } from '@mui/material';
+
+
+const TablePagination: FC<ITablePaginationProps> = ({ totalPages }) => {
     const dispatch = useAppDispatch();
     const tableParams = useAppSelector(state => state.table);
 
-    const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
-
-    const handlePageChange = (number: number): void => {
-        dispatch(setParams({ ...tableParams, page: number }))
+    const handlePageChange = (event: unknown, newPage: number): void => {
+        dispatch(setParams({ ...tableParams, page: newPage }))
     }
 
     return (
-        <tr>
-            <th colSpan={7}>
-                <ul>
-                    {pages.map((number, idx) => (
-                        <li className={currentPage === number ? 'Active' : ''} key={idx} onClick={() => handlePageChange(number)}>{number}</li>
-                    ))}
-                </ul>
-            </th>
-        </tr>
+        <Pagination
+            count={totalPages}
+            sx={{ display: 'flex', justifyContent: 'center' }}
+            onChange={handlePageChange}
+            renderItem={(item) => (
+                <PaginationItem
+                    {...item}
+                />
+            )}
+        />
     )
 }
 
