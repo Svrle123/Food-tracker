@@ -1,9 +1,11 @@
 import { FC } from 'react'
 import { IButtonProps } from '../interfaces'
 
-const Button: FC<IButtonProps> = ({ className, onClick, label, type }) => {
+import { Button as MuiButton } from '@mui/material';
+
+const Button: FC<IButtonProps> = ({ className, onClick, label, variant, type, sx }) => {
     return (
-        <button type={type} className={className} onClick={onClick}>{label}</button>
+        <MuiButton sx={sx} className={className} type={type} variant={variant} onClick={onClick}>{label}</MuiButton>
     )
 }
 

@@ -1,3 +1,4 @@
+import { InputBaseComponentProps } from "@mui/material";
 import { ChangeEvent, MutableRefObject } from "react";
 
 export default interface IInputProps {
@@ -11,4 +12,5 @@ export default interface IInputProps {
     id: string,
     ref?: MutableRefObject<HTMLInputElement> | MutableRefObject<null> | undefined,
     required?: boolean,
+    inputProps?: InputBaseComponentProps
 }

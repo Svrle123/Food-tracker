@@ -5,6 +5,9 @@ import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { useService } from '../contexts/ServiceProvider';
 import { TableLogRow } from './table';
+import { Button } from '.';
+
+import { Box, Paper, Table, TableContainer, TableBody, TableHead, TableRow, TableCell, TableFooter, TablePagination } from "@mui/material";
 
 const FoodLog: FC = () => {
     const { foodLogRouteService } = useService()
@@ -40,39 +43,48 @@ const FoodLog: FC = () => {
     }
 
     return (
-        <Fragment>
-            <table style={{ height: "400px" }}>
-                <thead>
-                    <tr>
-                        <td >{"Current food log"}</td>
-                        <td >{"Amount"}</td>
-                        <td onClick={() => dispatch(clearLog())}>
-                            {"Clear"}
-                        </td>
-                    </tr>
-                </thead>
-                <tbody>
-                    {entries.length > 0 && (
-                        <Fragment>
-                            {entries.map((entry, idx) => (
-                                <TableLogRow key={idx} {...entry} />
-                            ))}
-                        </Fragment>
-                    )}
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td>{"Calories total"}</td>
-                        <td colSpan={2}>{getTotalCalories()}</td>
-                    </tr>
-                    <tr>
-                        <td colSpan={3} onClick={() => submitLog()}>
-                            {"SUBMIT LOG"}
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-        </Fragment >
+        <Box sx={{ width: '100%' }}>
+            <Paper sx={{ width: '100%', mb: 2 }}>
+                <TableContainer sx={{ height: 400 }} >
+                    <Table
+                        stickyHeader
+                        aria-labelledby="tableTitle"
+                        size={'medium'}
+                    >
+                        <TableHead>
+                            <TableRow>
+                                <TableCell align='left'>{"Current food log"}</TableCell>
+                                <TableCell align='center'>{"Amount"}</TableCell>
+                                <TableCell align='center' onClick={() => dispatch(clearLog())}>
+                                    {"Clear"}
+                                </TableCell>
+                            </TableRow>
+                        </TableHead>
+                        <TableBody>
+                            {entries.length > 0 && (
+                                <Fragment>
+                                    {entries.map((entry, idx) => (
+                                        <TableLogRow key={idx} {...entry} />
+                                    ))}
+                                </Fragment>
+                            )}
+                        </TableBody>
+                        <TableRow>
+                            <TableCell align='left' >{"Calories total"}</TableCell>
+                            <TableCell align='right'>{getTotalCalories()}</TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </Table>
+                </TableContainer>
+                <Button
+                    sx={{
+                        width: '100%'
+                    }}
+                    onClick={() => submitLog()}
+                    label={'SUBMIT LOG'}
+                />
+            </Paper>
+        </Box >
     )
 }
 

@@ -144,12 +144,12 @@ const SignUpForm: FC<IFormProps> = ({ changeForm }) => {
         id='confirmPassword'
       />
       <Button
-        className={styles.form__button}
-        type='submit'
+        variant={'contained'}
         label='Sign up'
+        type='submit'
       />
       <Button
-        className={styles.form__button}
+        variant={'contained'}
         onClick={(e) => changeForm(e)}
         label='Switch to Sign in'
       />

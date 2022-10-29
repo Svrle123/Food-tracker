@@ -1,15 +1,16 @@
+import { TableCell, TableRow } from '@mui/material'
 import { FC } from 'react'
 import { IFood } from '../../interfaces'
 
 const TableEntry: FC<IFood> = (food) => {
     return (
-        <tr>
-            <td>{food?.calories}</td>
-            <td>{food?.carbohydrates}</td>
-            <td>{food?.fat}</td>
-            <td>{food?.protein}</td>
-            <td>{food?.fiber}</td>
-        </tr>
+        <TableRow>
+            <TableCell align="center">{food?.calories}</TableCell>
+            <TableCell align="center">{food?.carbohydrates}</TableCell>
+            <TableCell align="center">{food?.fat}</TableCell>
+            <TableCell align="center">{food?.protein}</TableCell>
+            <TableCell align="center">{food?.fiber}</TableCell>
+        </TableRow>
     )
 }
 

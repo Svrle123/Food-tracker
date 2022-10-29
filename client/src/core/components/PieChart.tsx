@@ -25,7 +25,7 @@ const PieChart: FC = () => {
             chartType="PieChart"
             data={pieData.length > 0 ? pieData : initialState}
             options={{
-                backgroundColor: "#A9C4C2",
+                backgroundColor: "#2e2e2e",
                 is3D: true,
                 legend: {
                     position: 'top',

@@ -13,6 +13,8 @@ const MainLayout: FC = () => {
             <div className={styles.righttop}>
                 <div className={styles.righttop__left}>
                     <FoodEntry />
+                    <FoodEntry />
+                    <FoodEntry />
                     <PieChart />
                 </div>
                 <div className={styles.righttop__right} >

@@ -3,6 +3,7 @@ import { removeEntry, editEntry } from '../../../features/foodEntries/foodEntrie
 import { useAppDispatch } from '../../../store/hooks';
 import { IFood } from '../../interfaces';
 import { Input } from '../';
+import { TableCell, TableRow } from '@material-ui/core';
 
 const TableLogRow: FC<IFood> = (food) => {
     const [amount, setAmount] = useState(food.amount || 1)
@@ -20,19 +21,20 @@ const TableLogRow: FC<IFood> = (food) => {
     }
 
     return (
-        <tr>
-            <td>{food.name}</td>
-            <td>
+        <TableRow>
+            <TableCell>{food.name}</TableCell>
+            <TableCell>
                 <Input
                     className={''}
                     onChange={(e) => handleInputChange(e)}
                     value={amount}
                     type={"text"}
                     id={'amount'}
+                    inputProps={{ /* disableUnderline: true, */ style: { textAlign: 'center' } }}
                 />
-            </td>
-            <td onClick={() => dispatch(removeEntry(food._id))}>{"X"}</td>
-        </tr>
+            </TableCell>
+            <TableCell align='center' onClick={() => dispatch(removeEntry(food._id))}>{"X"}</TableCell>
+        </TableRow>
     )
 }
 
