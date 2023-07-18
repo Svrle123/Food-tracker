@@ -1,4 +1,4 @@
-import { IFood } from "../interfaces";
+import { IFood } from 'core/interfaces';
 
 const calculateSelectedFood = (selected: IFood, amount: number) => {
     if (!selected._id) {

@@ -1,24 +1,29 @@
+/* #region  imports */
 import { FC, Fragment, useEffect } from 'react'
 import { map } from 'lodash';
-import { IFoodResponse } from '../../interfaces';
+import { IFoodResponse } from 'core/interfaces';
 import { TableFilter, TableHeader, TableRow, TablePagination } from '.';
-import { useService } from '../../contexts/ServiceProvider';
-import { useAppDispatch, useAppSelector } from '../../../store/hooks';
-import { setFood } from '../../../features/food/foodSlice';
+import { useService } from 'core/contexts/ServiceProvider';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { setFood } from 'features/food/foodSlice';
 
 import { Box, Paper, Table as MuiTable, TableBody, TableContainer, } from '@mui/material';
+/* #endregion */
 
-
-
+/* #region  constants */
+const MIN_TABLE_HEIGHT = 837;
+const MIN_TABLE_WIDTH = 750;
+/* #endregion */
 
 const Table: FC = () => {
+    /* #region  state */
     const { foodRouteService } = useService();
-    const table = useAppSelector(state => state.table);
-    const { foodData: { data, totalPages } } = useAppSelector(state => state.food);
 
+    const { table, food: { foodData: { data, totalPages } } } = useAppSelector(state => state);
     const dispatch = useAppDispatch();
+    /* #endregion */
 
-    debugger
+    /* #region  effect */
     useEffect(() => {
         const fetchData = async () => {
             const response: IFoodResponse = await foodRouteService.get({ ...table });
@@ -32,19 +37,21 @@ const Table: FC = () => {
         table.page,
         table.rpp,
     ])
+    /* #endregion */
 
+    /* #region  render */
     return (
         <Fragment>
             <TableFilter />
             <Box sx={{ width: '100%' }}>
                 <Paper sx={{ width: '100%', mb: 2 }}>
-                    <TableContainer sx={{ minHeight: 587 }}>
+                    <TableContainer sx={{ minHeight: MIN_TABLE_HEIGHT }}>
                         <MuiTable
-                            sx={{ minWidth: 750 }}
+                            sx={{ minWidth: MIN_TABLE_WIDTH }}
                             aria-labelledby="tableTitle"
                             size={'medium'}
                         >
-                            <TableHeader isSelected={false} />
+                            <TableHeader />
                             <TableBody>
                                 {data.length > 0 &&
                                     <Fragment>
@@ -61,6 +68,7 @@ const Table: FC = () => {
             </Box>
         </Fragment>
     )
+    /* #endregion */
 }
 
 export default Table;

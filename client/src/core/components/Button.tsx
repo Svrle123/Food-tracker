@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { IButtonProps } from '../interfaces'
+import { IButtonProps } from 'core/interfaces'
 
 import { Button as MuiButton } from '@mui/material';
 

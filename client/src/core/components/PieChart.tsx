@@ -35,8 +35,8 @@ const PieChart: FC = () => {
                 },
                 colors: ['#d1ae2b', '#b38849', '#d8a35c', '#636466'],
             }}
-            width={"350px"}
-            height={"350px"}
+            width={"300px"}
+            height={"300px"}
         />
     )
 }

@@ -4,7 +4,7 @@ export { default as Dropdown } from "./Dropdown";
 export { default as Navbar } from "./Navbar";
 export { default as NotFound } from "./NotFound";
 
-
-export { default as FoodEntry } from "./FoodEntry";
 export { default as FoodLog } from "./FoodLog";
 export { default as TodayLogs } from './TodayLogs';
+
+export { default as PieChart } from './PieChart';

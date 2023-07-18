@@ -1,30 +1,34 @@
 import { FC } from 'react'
-import { FoodEntry, FoodLog, TodayLogs } from '../../core/components';
-import PieChart from '../../core/components/PieChart';
-import { Table } from '../../core/components/table';
-import styles from './MainLayout.module.css';
+import { FoodLog, TodayLogs } from 'core/components';
+import { Table } from 'core/components/table';
+import { Grid } from '@mui/material';
+import { PieChart } from 'core/components';
 
 const MainLayout: FC = () => {
     return (
-        <div className={styles.grid__container}>
-            <div className={`${styles.leftfull}`}>
+        <Grid container>
+            <Grid item xs={6}>
                 <Table />
-            </div>
-            <div className={styles.righttop}>
-                <div className={styles.righttop__left}>
-                    <FoodEntry />
-                    <FoodEntry />
-                    <FoodEntry />
-                    <PieChart />
-                </div>
-                <div className={styles.righttop__right} >
-                    <FoodLog />
-                </div>
-            </div>
-            <div className={styles.rightbottom}>
-                <TodayLogs />
-            </div>
-        </div>
+            </Grid>
+            <Grid item xs={5}>
+                <Grid container padding={2}>
+                    <Grid item xs={9} md={9}>
+                        <FoodLog />
+                    </Grid>
+                    <Grid item xs={3} md={3}>
+                        <PieChart />
+                    </Grid>
+                </Grid>
+                <Grid container padding={2}>
+                    <Grid item xs={9} md={9}>
+                        <TodayLogs />
+                    </Grid>
+                    <Grid item xs={3} md={3}>
+                        <PieChart />
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
     )
 }
 

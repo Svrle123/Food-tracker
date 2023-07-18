@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { IInputProps } from '../interfaces'
 import { Input as MuiInput } from '@mui/material';
 
-const Input: FC<IInputProps> = ({ inputProps, className, placeholder, onChange, value, type, id, ref, required }) => {
+const Input: FC<IInputProps> = ({ inputProps, className, placeholder, onChange, value, type, id, ref, required, ...otherProps }) => {
     return (
         <MuiInput
             className={className}
@@ -15,6 +15,7 @@ const Input: FC<IInputProps> = ({ inputProps, className, placeholder, onChange, 
             required={required}
             inputProps={inputProps}
             fullWidth={true}
+            {...otherProps}
         />
     )
 }

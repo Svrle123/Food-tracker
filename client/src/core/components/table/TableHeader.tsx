@@ -1,75 +1,66 @@
-import { FC } from 'react'
-import { map } from 'lodash';
+/* #region  imports */
+import { FC, Fragment } from 'react'
 
 import { TableHead, TableRow, TableCell } from '@mui/material';
+/* #endregion */
 
-const defaultHeaders = {
-    name: {
+/* #region  constants */
+const defaultHeaders = [
+    {
         value: "Name",
         weight: "(100g)"
     },
-    calories: {
+    {
         value: "Calories",
         weight: ""
     },
-    carbohydrates: {
+    {
         value: "Carbs",
         weight: "(g)"
     },
-    fat: {
+    {
         value: "Fat",
         weight: "(g)"
     },
-    protein: {
+    {
         value: "Protein",
         weight: "(g)"
     },
-    fiber: {
+    {
         value: "Fiber",
         weight: "(g)"
     },
-}
-
-const selectedHeaders = {
-    calories: {
-        value: "Calories",
+    {
+        value: "Amount",
+        weight: "(g)"
+    },
+    {
+        value: "Add to log",
         weight: ""
-    },
-    carbohydrates: {
-        value: "Carbs",
-        weight: "(g)"
-    },
-    fat: {
-        value: "Fat",
-        weight: "(g)"
-    },
-    protein: {
-        value: "Protein",
-        weight: "(g)"
-    },
-    fiber: {
-        value: "Fiber",
-        weight: "(g)"
-    },
-}
+    }]
+/* #endregion */
 
-const TableHeader: FC<{ isSelected: boolean }> = ({ isSelected }) => {
+const TableHeader: FC = () => {
+    /* #region  render */
     return (
         <TableHead>
             <TableRow>
-                {map(isSelected ? selectedHeaders : defaultHeaders, header => (
-                    <>
-                        {
-                            header.value === "Name" ?
-                                <TableCell align={"left"} padding={"normal"} key={header.value}><strong>{`${header.value} ${header.weight}`}</strong></TableCell>
-                                :
-                                <TableCell align={"center"} padding={"normal"} key={header.value}><strong>{`${header.value} ${header.weight}`}</strong></TableCell>
-                        }
-                    </>
-                ))}
+                {defaultHeaders.map((header, idx) => {
+                    return (
+                        <Fragment key={idx}>
+                            {
+                                header.value === "Name" ?
+                                    <TableCell align={"left"} padding={"normal"} key={header.value}><strong>{`${header.value} ${header.weight}`}</strong></TableCell>
+                                    :
+                                    <TableCell align={"center"} padding={"normal"} key={header.value}><strong>{`${header.value} ${header.weight}`}</strong></TableCell>
+                            }
+                        </Fragment>
+                    )
+                })}
             </TableRow>
         </TableHead>
     )
+    /* #endregion */
 }
 
 export default TableHeader;

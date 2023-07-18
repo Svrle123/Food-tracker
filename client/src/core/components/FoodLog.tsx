@@ -1,20 +1,48 @@
-import { FC, Fragment } from 'react'
-import { toast } from 'react-toastify';
-import { clearLog } from '../../features/foodEntries/foodEntriesSlice';
-import { setTodayLogs } from '../../features/foodLogs/foodLogsSlice';
-import { useAppDispatch, useAppSelector } from '../../store/hooks'
-import { useService } from '../contexts/ServiceProvider';
-import { TableLogRow } from './table';
-import { Button } from '.';
+/* #region  imports */
+import { FC } from 'react'
 
-import { Box, Paper, Table, TableContainer, TableBody, TableHead, TableRow, TableCell, TableFooter, TablePagination } from "@mui/material";
+import { clearLog } from 'features/foodEntries/foodEntriesSlice';
+import { setTodayLogs } from 'features/foodLogs/foodLogsSlice';
+import { useAppDispatch, useAppSelector } from 'store/hooks'
+import { useService } from 'core/contexts/ServiceProvider';
+import { TableLogRow } from 'core/components/table';
+import { Button } from 'core/components';
+
+import { Box, Paper, Table, TableContainer, TableBody, TableHead, TableRow, TableCell } from "@mui/material";
+import { IFood } from 'core/interfaces';
+
+import { toast } from 'react-toastify';
+/* #endregion */
+
+/* #region  constants */
+const EMPTY_ITEM: IFood = {
+    name: '',
+    calories: 0,
+    carbohydrates: 0,
+    fat: 0,
+    protein: 0,
+    fiber: 0,
+    _id: '',
+    __v: ''
+}
+/* #endregion */
 
 const FoodLog: FC = () => {
+    /* #region  state */
     const { foodLogRouteService } = useService()
-    const user = useAppSelector(state => state.user);
-    const entries = useAppSelector(state => state.entries);
+    const { user, entries } = useAppSelector(state => state);
     const dispatch = useAppDispatch();
 
+    const renderEntries = [...entries];
+
+    if (renderEntries.length < 5) {
+        while (renderEntries.length < 5) {
+            renderEntries.push(EMPTY_ITEM);
+        }
+    }
+    /* #endregion */
+
+    /* #region  methods */
     const getTotalCalories = () => {
         let totalCalories = 0;
         entries.forEach(entry => {
@@ -41,11 +69,25 @@ const FoodLog: FC = () => {
         dispatch(setTodayLogs(logs));
         dispatch(clearLog());
     }
+    /* #endregion */
 
+    /* #region  render */
     return (
         <Box sx={{ width: '100%' }}>
             <Paper sx={{ width: '100%', mb: 2 }}>
-                <TableContainer sx={{ height: 400 }} >
+                <TableContainer sx={{
+                    height: 420,
+                    minHeight: 420,
+                    "&::-webkit-scrollbar": {
+                        width: 10
+                    },
+                    "&::-webkit-scrollbar-track": {
+                        backgroundColor: "#90caf9"
+                    },
+                    "&::-webkit-scrollbar-thumb": {
+                        backgroundColor: "#121212",
+                    }
+                }} >
                     <Table
                         stickyHeader
                         aria-labelledby="tableTitle"
@@ -61,31 +103,30 @@ const FoodLog: FC = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {entries.length > 0 && (
-                                <Fragment>
-                                    {entries.map((entry, idx) => (
-                                        <TableLogRow key={idx} {...entry} />
-                                    ))}
-                                </Fragment>
-                            )}
+                            {renderEntries.map((entry, idx) => (
+                                <TableLogRow key={idx} {...entry} />
+                            ))}
+                            <TableRow style={{ position: "sticky", bottom: 0, backgroundColor: "#121212" }}>
+                                <TableCell colSpan={2} align='left' >{"Total calories"}</TableCell>
+                                <TableCell align='center' sx={{ maxWidth: 20 }}>{getTotalCalories()}</TableCell>
+                            </TableRow>
                         </TableBody>
-                        <TableRow>
-                            <TableCell align='left' >{"Calories total"}</TableCell>
-                            <TableCell align='right'>{getTotalCalories()}</TableCell>
-                            <TableCell></TableCell>
-                        </TableRow>
                     </Table>
                 </TableContainer>
                 <Button
                     sx={{
-                        width: '100%'
+                        width: '100%',
+                        borderRadius: 0,
+                        fontSize: 15
                     }}
                     onClick={() => submitLog()}
                     label={'SUBMIT LOG'}
+                    variant="contained"
                 />
             </Paper>
         </Box >
     )
+    /* #endregion */
 }
 
 export default FoodLog
